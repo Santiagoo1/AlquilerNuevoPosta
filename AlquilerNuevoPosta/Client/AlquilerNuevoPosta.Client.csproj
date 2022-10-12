@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Alquiler.BD\Alquiler.BD.csproj" />
     <ProjectReference Include="..\Shared\AlquilerNuevoPosta.Shared.csproj" />
   </ItemGroup>
 
