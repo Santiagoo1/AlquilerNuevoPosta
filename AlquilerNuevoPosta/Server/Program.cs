@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using System.Text.Json.Serialization;
+using Alquiler.BD;
+using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +11,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddDbContext<DbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+
+});
+
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AlquilerNuevo", Version = "v1" });
+});
+
+builder.Services.AddControllersWithViews()
+                .AddJsonOptions(x => x.JsonSerializerOptions
+                                      .ReferenceHandler = ReferenceHandler
+                                      .IgnoreCycles);
+
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                                        "AlquilerNuevo"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

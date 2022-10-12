@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlquilerNuevoPosta.Client",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlquilerNuevoPosta.Shared", "AlquilerNuevoPosta\Shared\AlquilerNuevoPosta.Shared.csproj", "{9EF976ED-20DF-42C7-8CC8-F3724EE39017}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alquiler.BD", "Alquiler.BD\Alquiler.BD.csproj", "{C109D3AA-437B-40B6-B4A5-B97C96F9BC18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9EF976ED-20DF-42C7-8CC8-F3724EE39017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EF976ED-20DF-42C7-8CC8-F3724EE39017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EF976ED-20DF-42C7-8CC8-F3724EE39017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C109D3AA-437B-40B6-B4A5-B97C96F9BC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C109D3AA-437B-40B6-B4A5-B97C96F9BC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C109D3AA-437B-40B6-B4A5-B97C96F9BC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C109D3AA-437B-40B6-B4A5-B97C96F9BC18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
