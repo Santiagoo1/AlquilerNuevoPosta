@@ -8,5 +8,10 @@ namespace Alquiler.BD.Data.Entidades
 {
     public class Estado
     {
+        public int Id { get; set; }
+
+        public string Estados { get; set; }
+
+        public List<Producto> Productos { get; set; }
     }
 }

@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<DbContext>(options =>
+builder.Services.AddDbContext<BdContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
 
