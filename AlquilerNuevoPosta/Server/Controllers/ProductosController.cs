@@ -21,6 +21,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         public async Task<ActionResult<List<Producto>>> Get()
         {
             var resp = await context.Productos.ToListAsync();
+            
             return resp;
         }
 

@@ -39,6 +39,13 @@
             <ValidationMessage For="@(()=> producto.Fotos)" />
         </div>
 
+        <label>Estado</label>
+        <div>
+
+            <InputText class= "form-control" @bind-Value ="@estado.Estados" > </InputText>
+            <ValidationMessage For="@(()=> estado.Estados)" />
+
+        </div>
 
     </div>
 
@@ -46,6 +53,7 @@
 
 @code {
     [Parameter] public Producto producto { get; set; }
+    [Parameter] public Estado estado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; }
     [Parameter] public EventCallback onCancel { get; set; }
 }

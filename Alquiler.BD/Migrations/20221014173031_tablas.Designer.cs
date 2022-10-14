@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alquiler.BD.Migrations
 {
     [DbContext(typeof(BdContext))]
-    [Migration("20221014000105_inicio")]
-    partial class inicio
+    [Migration("20221014173031_tablas")]
+    partial class tablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

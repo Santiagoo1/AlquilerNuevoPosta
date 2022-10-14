@@ -4,7 +4,7 @@
 
 namespace Alquiler.BD.Migrations
 {
-    public partial class inicio : Migration
+    public partial class tablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
