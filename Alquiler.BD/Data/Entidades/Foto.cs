@@ -14,10 +14,10 @@ namespace Alquiler.BD.Data.Entidades
 
         public string Fotos { get; set; }
 
-
-
+       
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }
 
-    }
+       
+}
 }

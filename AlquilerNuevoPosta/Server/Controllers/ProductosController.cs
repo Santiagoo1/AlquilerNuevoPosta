@@ -20,9 +20,13 @@ namespace AlquilerNuevoPosta.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Producto>>> Get()
         {
-            var resp = await context.Productos.ToListAsync();
-            
-            return resp;
+            return await context.Productos
+                
+                                         .Include(m => m.Fotos)
+                                         .Include(m => m.Estado)
+                                             .ToListAsync();
+
+          
         }
 
         [HttpGet("{id:int}")]
@@ -31,6 +35,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             var venta = await context.Productos
                                          .Where(e => e.Id == id)
                                          .Include(m => m.Fotos)
+                                         .Include(m => m.Estado)
                                          .FirstOrDefaultAsync();
 
             if (venta == null)

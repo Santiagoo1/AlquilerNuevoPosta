@@ -21,7 +21,9 @@ namespace AlquilerNuevoPosta.Server.Controllers
         public async Task<ActionResult<List<Foto>>> Get()
         {
 
-            return await context.Fotos.ToListAsync();
+            return await context.Fotos
+                                  .Include(m => m.Producto)
+                                   .ToListAsync();
 
 
         }

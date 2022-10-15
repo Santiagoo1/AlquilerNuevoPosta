@@ -20,22 +20,21 @@
 
         <th>  Detalle</th>
         <td></td>
-                <td></td>
         <td></td>
         <td></td>
-        <th>  Foto</th>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
         <th>  Estado</th>
     </tr>
-    @if (productos==null && estados== null)
+    @if (productos==null )
     {
         <tr>Cargando......</tr>
     }
-    else if (productos.Count ==0  && estados.Count==0)
+    else if (productos.Count ==0 )
     {
-        <tr>No exixten datos</tr>
+        <tr>No existen datos</tr>
     }
     else
     {
@@ -55,28 +54,86 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>@item.Fotos</td>
                 <td></td>
                 <td></td>
                 <td></td>    
-
+                <td></td>
+                 <td></td>@item.Estado.Estados
             </tr>
         }   
 
 
     }
-
-</table>
+  </table>
     
+
+
+  <table>
+               <tr>
+       <td></td>
+        <td></td>
+        <td></td>
+        <th>  Fotos</th>
+        <td></td>
+        <td></td>
+        <td></td>
+         <td></td>
+        <td></td>
+        <td></td>
+        <th>  Producto</th>
+         <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+
+
+      @if ( fotos==null)
+    {
+        <tr>Cargando......</tr>
+    }
+    else if ( fotos.Count ==0)
+    {
+        <tr>No existen datos</tr>
+    }
+    else
+    {
+
+         @foreach(var item in fotos)
+         { <tr>
+                <td>@item.Fotos</td>
+                <td></td>    
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>    
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>@item.Producto.NombreProducto
+                <td></td>
+                <td></td>
+                 <td></td>
+           </tr>
+         }
+      }
+
+      </table>
+
+
 
 @code {
     List<Producto> productos;
-    List<Estado> estados; 
+    List<Foto> fotos;
+    List<Estado> Estados;
+
+
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
         await Leer();
+        await Leer1();
     }
 
     private async Task Leer()
@@ -88,6 +145,19 @@
         if (!respuesta.Error)
         {
             productos = respuesta.Respuesta;
+        }
+
+    }
+
+     private async Task Leer1()
+
+    {
+
+        var respuesta = await http.Get<List<Foto>>("api/Fotos");
+        
+        if (!respuesta.Error)
+        {
+            fotos = respuesta.Respuesta;
         }
 
     }
