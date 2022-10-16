@@ -46,7 +46,6 @@ namespace Alquiler.BD.Data.Entidades
         public string NumeroTelefono { get; set; }
 
 
-
         [Required(ErrorMessage = "El Tipo de Documento es obligatorio")]
         public int TipoDocumentoId { get; set; }
         public TipoDocumento TipoDocumento { get; set; }

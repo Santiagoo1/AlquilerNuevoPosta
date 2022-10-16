@@ -16,22 +16,16 @@ namespace Alquiler.BD.Data.Entidades
 
         public string NombreProducto { get; set; }
 
-
-
         [Required]
 
         public int PrecioProducto { get; set; }
-
 
         [Required]
 
         public string DetallesProducto { get; set; }
 
-
-
         public List<Foto> Fotos { get; set; }
       
-
         public int EstadoId { get; set; }  
         public Estado Estado { get; set; }
     }

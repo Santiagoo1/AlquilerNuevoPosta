@@ -1,6 +1,8 @@
 ﻿@page "/Registrar_Producto"
-
-
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+@inject NavigationManager navigationManager
 <h3>Registrar_Producto</h3>
 
 <html>
@@ -315,6 +317,7 @@
 
 <body>
 
+
     <header>
 
         <label for="btn-menu" class=icon-menu>
@@ -386,10 +389,10 @@
 
             <div class="cajas-texto">
 
-                <input class="buscador1" type="text">
-                <input class="buscador2" type="text">
-                <textarea name="buscador3" cols="50" rows="5"> </textarea>
-                <textarea name="buscador4" readonly="readonly" cols="50" rows="5"> </textarea>
+                <input class="buscador1" type="text" @bind-value="@producto.NombreProducto">
+                <input class="buscador2" type="text"@bind-value="producto.PrecioProducto">
+                <input class="buscador3" type="text" @bind-value="producto.DetallesProducto"/> 
+                @*<input class="buscador4" type="text" @bind-value="producto.Fotos"/> *@
 
 
             </div>
@@ -406,8 +409,9 @@
                 <label for="submit">
                     Alquilar Producto
                 </label>
-                <input type="submit" value="Save" />
-                <input type="submit" value="Cancel" />
+                @*<input type="submit" @onclick="Grabar" value="Save"  />*@
+                <button class="btn btn-primary" @onclick="Grabar">Alquilar producto</button>
+              
 
             </div>
 
@@ -416,6 +420,8 @@
     </header>
 
 
+ 
+
 </body>
 
 
@@ -423,10 +429,22 @@
 
 
 
-
-
-
-
 @code {
+    private Producto producto = new Producto();
+
+    private async void Grabar()
+    {
+        var httpRespuesta = await http.Post<Producto>("api/Productos", producto);
+        if (httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+        navigationManager.NavigateTo("/Productos");
+    }
+    
+
+
+    private void Cancelar()
+    { }
 
 }

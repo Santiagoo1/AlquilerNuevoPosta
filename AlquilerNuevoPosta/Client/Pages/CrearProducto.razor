@@ -1,0 +1,29 @@
+﻿@page "/hola"
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+@inject NavigationManager navigationManager
+
+<Form_Producto producto="producto" onCancel="Cancelar" onValidSubmit="Grabar" />
+
+<h3>CrearProducto</h3>
+
+@code {
+
+    private Producto producto = new Producto();
+
+    private async void Grabar()
+    {
+        var httpRespuesta = await http.Post<Producto>("api/Productos", producto);
+        if (httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+
+    }
+    
+
+    private void Cancelar()
+    { }
+
+}

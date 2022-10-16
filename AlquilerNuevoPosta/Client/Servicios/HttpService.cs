@@ -1,6 +1,7 @@
 ﻿using Alquiler.BD.Data.Entidades;
 using System.Text.Json;
 using AlquilerNuevoPosta.Client.Pages;
+using System.Text;
 
 namespace AlquilerNuevoPosta.Client.Servicios
 {
@@ -13,8 +14,8 @@ namespace AlquilerNuevoPosta.Client.Servicios
             this.http = http;
         }
 
-        public List<Producto> productos { get; set; }= new List<Producto>();
-        public List<Estado> estados { get; set; }= new List<Estado>();
+        public List<Producto> productos { get; set; } = new List<Producto>();
+        public List<Estado> estados { get; set; } = new List<Estado>();
 
         public async Task<HttpRespuesta<T>> Get<T>(string url)
         {
@@ -30,9 +31,30 @@ namespace AlquilerNuevoPosta.Client.Servicios
             {
                 return new HttpRespuesta<T>(default, true, response);
             }
+        }
 
 
 
+        public async Task<HttpRespuesta<object>> Post<T>(string url, T enviar)
+        {
+
+            try
+            {
+                var enviarJson = JsonSerializer.Serialize(enviar);
+                var enviarContent = new StringContent(enviarJson,
+                                                     Encoding.UTF8,
+                                                     "application/json");
+                var respuesta = await http.PostAsync(url, enviarContent);
+                return new HttpRespuesta<object>(null,
+                                                 !respuesta.IsSuccessStatusCode,
+                                                 respuesta);
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
 
         private async Task<T> DeserializarRepuesta<T>(HttpResponseMessage response)

@@ -1,15 +1,10 @@
 ﻿@using Alquiler.BD.Data.Entidades
+@inject NavigationManager navigatioManager
 
 <EditForm Model="producto" OOnValidSubmit="onValidSubmit">
     <DataAnnotationsValidator />
-    <div>
 
-        <label>Id</label>
-        <div>
 
-            <InputNumber class="form-control" @bind-Value="@producto.Id" />
-            <ValidationMessage For="@(()=> producto.Id)" />
-        </div>
 
         <label>Nombre</label>
         <div>
@@ -32,28 +27,32 @@
             <ValidationMessage For="@(()=> producto.DetallesProducto)" />
         </div>
 
-        <label>Foto</label>
+     <label>Foto</label>
         <div>
 
-            <InputFile class="form-control" @bind-Value="@producto.Fotos" />
-            <ValidationMessage For="@(()=> producto.Fotos)" />
+@*            <InputText class="form-control" @bind-Value="@fotos.Fotos" />
+            <ValidationMessage For="@(()=> fotos.Fotos)" />*@
         </div>
 
-        <label>Estado</label>
+@*        <label>Estado</label>
         <div>
 
             <InputText class= "form-control" @bind-Value ="@estado.Estados" > </InputText>
             <ValidationMessage For="@(()=> estado.Estados)" />
 
-        </div>
+        </div>*@
 
-    </div>
+   
+
+   <button @onclick="@(() => navigatioManager.NavigateTo("/Productos"))" class="btn btn-primary" type="submit">Aceptar</button>
+   <button class="btn btn-secondary" @onclick="onCancel">Cancelar</button>
 
 </EditForm>
 
 @code {
     [Parameter] public Producto producto { get; set; }
-    [Parameter] public Estado estado { get; set; }
+    //[Parameter] public Foto fotos { get; set; }
+    //[Parameter] public Estado estado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; }
     [Parameter] public EventCallback onCancel { get; set; }
 }
