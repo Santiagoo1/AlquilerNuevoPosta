@@ -14,8 +14,7 @@ namespace AlquilerNuevoPosta.Client.Servicios
             this.http = http;
         }
 
-        public List<Producto> productos { get; set; } = new List<Producto>();
-        public List<Estado> estados { get; set; } = new List<Estado>();
+     public List<Estado> Estados { get; set; }=new List<Estado>();
 
         public async Task<HttpRespuesta<T>> Get<T>(string url)
         {
@@ -55,6 +54,22 @@ namespace AlquilerNuevoPosta.Client.Servicios
 
                 throw;
             }
+        }
+
+        public async Task<HttpRespuesta<object>> Put<T>(string url, T enviar)
+        {
+            try
+            {
+                var enviarJson = JsonSerializer.Serialize(enviar);
+                var enviarContent = new StringContent(enviarJson,
+                                                      Encoding.UTF8,
+                                                      "application/json");
+                var respuesta = await http.PutAsync(url, enviarContent);
+                return new HttpRespuesta<object>(null,
+                                                 !respuesta.IsSuccessStatusCode,
+                                                 respuesta);
+            }
+            catch (Exception e) { throw; }
         }
 
         private async Task<T> DeserializarRepuesta<T>(HttpResponseMessage response)
