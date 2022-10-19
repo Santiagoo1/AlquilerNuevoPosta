@@ -27,18 +27,18 @@
             <ValidationMessage For="@(()=> producto.DetallesProducto)" />
         </div>
 
-@*     <label>Foto</label>
+      @*<label>Foto</label>
         <div>
 
-           <InputText class="form-control" @bind-Value="@fotos.Fotos" />
-            <ValidationMessage For="@(()=> fotos.Fotos)" />
+           <InputText class="form-control" @bind-Value="@foto.Fotos" />
+            <ValidationMessage For="@(()=> foto.Fotos)" />
         </div>*@
 
        <label>Estado</label>
         <div>
 
-            <InputText class= "form-select" @bind-Value ="@producto.EstadoId" /> 
-             
+            <InputNumber class= "form-select" @bind-Value ="@producto.EstadoId" /> 
+               <ValidationMessage For="@(()=> producto.EstadoId)" />
                 
                 
             
@@ -56,10 +56,8 @@
 @code {
 
     [Parameter] public Producto producto { get; set; }
-   
-
-        //[Parameter] public Foto fotos { get; set; }
-    [Parameter] public Estado estado { get; set; }
+    //[Parameter] public Foto foto { get; set; }
+   // [Parameter] public Estado estado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; 
 }
     [Parameter] public EventCallback onCancel { get; set; }

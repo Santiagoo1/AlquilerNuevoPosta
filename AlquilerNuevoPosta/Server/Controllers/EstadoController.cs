@@ -21,7 +21,10 @@ namespace AlquilerNuevoPosta.Server.Controllers
         public async Task<ActionResult<List<Estado>>> Get()
         {
 
-            return await context.Estados.ToListAsync();
+            return await context.Estados
+
+                                       .Include(m => m.Productos)
+                                       .ToListAsync();
 
 
         }
@@ -49,7 +52,21 @@ namespace AlquilerNuevoPosta.Server.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<ActionResult<List<Estado>>> Post(Estado estado)
+        {
+            try
+            {
 
+                context.Estados.Add(estado);
+                await context.SaveChangesAsync();
+                return Ok(estado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
         [HttpPut("{id:int}")]
@@ -88,7 +105,27 @@ namespace AlquilerNuevoPosta.Server.Controllers
             }
         }
 
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id)
+        {
+            var est = context.Estados.Where(x => x.Id == id).FirstOrDefault();
 
+            if (est == null)
+            {
+                return NotFound($"El registro {id} no fue encontrado");
+            }
 
+            try
+            {
+                context.Estados.Remove(est);
+                context.SaveChanges();
+                return Ok($"El registro de {est.Estados} ha sido borrado.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Los datos no pudieron eliminarse por: {e.Message}");
+            }
+
+        }
     }
     }

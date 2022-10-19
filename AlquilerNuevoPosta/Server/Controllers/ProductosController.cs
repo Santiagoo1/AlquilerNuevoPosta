@@ -47,14 +47,14 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Producto producto)
+        public async Task<ActionResult<List<Producto>>> Post(Producto producto)
         {
             try
             {
 
                 context.Productos.Add(producto);
                 await context.SaveChangesAsync();
-                return producto.Id;
+                return Ok(producto);
             }
             catch (Exception e)
             {
@@ -74,6 +74,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
             var produ = context.Productos.Where(e => e.Id == id).FirstOrDefault();
             var fotoss = context.Fotos.Where(e => e.Id == id).FirstOrDefault();
+            var estad = context.Estados.Where(e => e.Id == id).FirstOrDefault();
 
             if (produ == null)
             {
@@ -83,6 +84,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             produ.NombreProducto = producto.NombreProducto;
             produ.PrecioProducto = producto.PrecioProducto;
             produ.DetallesProducto = producto.DetallesProducto;
+            estad.Estados = producto.Estado.Estados;
 
             try
             {

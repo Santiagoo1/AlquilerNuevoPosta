@@ -15,6 +15,8 @@ namespace AlquilerNuevoPosta.Client.Servicios
         }
 
      public List<Estado> Estados { get; set; }=new List<Estado>();
+        public List<Foto> Fotos { get; set; } = new List<Foto>();
+        public List<Producto> Productos { get; set; } = new List<Producto>();
 
         public async Task<HttpRespuesta<T>> Get<T>(string url)
         {
@@ -71,6 +73,17 @@ namespace AlquilerNuevoPosta.Client.Servicios
             }
             catch (Exception e) { throw; }
         }
+
+        public async Task<HttpRespuesta<object>> Delete(string url)
+
+        {
+            var respuesta = await http.DeleteAsync(url);
+            return new HttpRespuesta<object>(null,
+                                             !respuesta.IsSuccessStatusCode,
+                                             respuesta);
+
+        }
+
 
         private async Task<T> DeserializarRepuesta<T>(HttpResponseMessage response)
         {
