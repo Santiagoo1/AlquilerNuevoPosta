@@ -1,4 +1,4 @@
-﻿@page "/Registrar_Producto"
+﻿@page "/sdfds"
 @using Alquiler.BD.Data.Entidades
 @using AlquilerNuevoPosta.Client.Servicios
 @inject IHttpService http
@@ -432,7 +432,7 @@
 
 @code {
     private Producto producto = new Producto();
-
+      
     private async void Grabar()
     {
         var httpRespuesta = await http.Post<Producto>("api/Productos", producto);

@@ -1,27 +1,95 @@
 ﻿@using Alquiler.BD.Data.Entidades
 @inject NavigationManager navigatioManager
 @using AlquilerNuevoPosta.Client.Servicios
+
+<style>
+
+    .txt1{
+    
+    position: absolute;
+    top: 380px;
+    left: 404px;
+    }
+
+    .nombre{
+    
+    position: absolute;
+    top: 355px;
+    left: 408px;
+    }
+    .txt2{
+    
+    position: absolute;
+    top: 527px;
+    left: 404px;
+    }
+
+    .precio{
+    
+    position: absolute;
+    top: 503px;
+    left: 408px;
+    }
+
+    .detalle{
+    
+    position: absolute;
+    top: 621px;
+    left: 406px;
+
+    }
+
+    .txt3{
+    
+    position: absolute;
+    top: 646px;
+    left: 404px;
+
+    }
+
+    .txt4{
+    position: absolute;
+    top: 646.8%;
+    left: 1113px;
+    }
+
+    .estado{
+    position: absolute;
+    top: 589.8%;
+    left: 1200px;
+    }
+
+    .aceptar{
+    position: absolute;
+    top: 643px;
+    left: 1126px;
+    }
+
+</style>
+
+
+
 <EditForm Model="producto" OnValidSubmit="onValidSubmit">
     <DataAnnotationsValidator />
 
 
 
-        <label>Nombre</label>
-        <div>
+        <label class="nombre">Nombre</label>
+        <div class="txt1">
 
             <InputText class="form-control" @bind-Value="@producto.NombreProducto" />
             <ValidationMessage For="@(()=> producto.NombreProducto)" />
         </div>
 
-        <label>Precio</label>
-        <div>
+        <label class="precio">Precio </label>
+        <div class="txt2">
 
             <InputNumber class="form-control" @bind-Value="@producto.PrecioProducto" />
             <ValidationMessage For="@(()=> producto.PrecioProducto)" />
         </div>
 
-        <label>Detalle</label>
-        <div>
+        <label class="detalle">Detalle</label>
+        <div class="txt3">
 
             <InputText class="form-control" @bind-Value="@producto.DetallesProducto" />
             <ValidationMessage For="@(()=> producto.DetallesProducto)" />
@@ -34,22 +102,22 @@
             <ValidationMessage For="@(()=> foto.Fotos)" />
         </div>*@
 
-       <label>Estado</label>
-        <div>
+       <label class="estado">Estado</label>
+        <div class="txt4">
 
             <InputNumber class= "form-select" @bind-Value ="@producto.EstadoId" /> 
                <ValidationMessage For="@(()=> producto.EstadoId)" />
                 
-                
-            
-        
-
+                              
         </div>
 
    
-
+    <div class="aceptar">
    <button type="submit" class="btn btn-primary" >Aceptar</button>
+   </div>
+   <div class="cancelar">
    <button  class="btn btn-secondary" @onclick="onCancel">Cancelar</button>
+   </div>
 
 </EditForm>
 
