@@ -22,7 +22,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         {
             return await context.Productos
                 
-                                         .Include(m => m.Fotos)
+                                         
                                          .Include(m => m.Estado)
                                              .ToListAsync();
 
@@ -34,7 +34,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         {
             var venta = await context.Productos
                                          .Where(e => e.Id == id)
-                                         .Include(m => m.Fotos)
+                                         
                                          .Include(m => m.Estado)
                                          .FirstOrDefaultAsync();
 
@@ -73,8 +73,8 @@ namespace AlquilerNuevoPosta.Server.Controllers
             }
 
             var produ = context.Productos.Where(e => e.Id == id).FirstOrDefault();
-            var fotoss = context.Fotos.Where(e => e.Id == id).FirstOrDefault();
-            var estad = context.Estados.Where(e => e.Id == id).FirstOrDefault();
+           
+            
 
             if (produ == null)
             {
@@ -84,7 +84,8 @@ namespace AlquilerNuevoPosta.Server.Controllers
             produ.NombreProducto = producto.NombreProducto;
             produ.PrecioProducto = producto.PrecioProducto;
             produ.DetallesProducto = producto.DetallesProducto;
-            estad.Estados = producto.Estado.Estados;
+            produ.foto = producto.foto;
+            produ.EstadoId = producto.EstadoId;
 
             try
             {

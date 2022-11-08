@@ -20,7 +20,7 @@ builder.Services.AddDbContext<BdContext>(options =>
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AlquilerNuevo", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alquileress", Version = "v1" });
 });
 
 builder.Services.AddControllersWithViews()
@@ -33,7 +33,7 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                                        "AlquilerNuevo"));
+                                        "Alquileress"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

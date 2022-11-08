@@ -22,7 +22,6 @@ namespace Alquiler.BD
 
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
 
-        public DbSet<Foto> Fotos { get; set; }
 
         public DbSet<Estado> Estados { get; set; }
 

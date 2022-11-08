@@ -291,26 +291,57 @@
 
 </html>
 
-<Form_Producto producto="producto" onCancel="Cancelar" onValidSubmit="Grabar" />
+<Form_Producto producto="producto" 
+                
+    
+    onCancel="Cancelar" onValidSubmit="Grabar" />
 
 
 @code {
 
         private Producto producto = new Producto();
-        private Estado estado = new Estado();
-       private Foto foto = new Foto();
+        //private Estado estado = new Estado();
+      
 
     private async void Grabar()
 
 
     {
+
+          List<Estado> estados;
+      
+        int Estadoid = 0;
+       
+
         var httpRespuesta = await http.Post<Producto>("api/Productos", producto);
         if (httpRespuesta.Error)
         {
             var body = httpRespuesta.HttpResponseMessage;
         }
         navigationManager.NavigateTo("/Productos");
-    }
+
+        // var httpRespuestaEstado = await http.Post<Estado>("api/Estado", estado);
+        //if (httpRespuestaEstado.Error)
+        //{
+        //    var body = httpRespuestaEstado.HttpResponseMessage;
+        //}
+
+        //var RespuestaEstado= await http.Get<List<Estado>>("api/Estado");
+        //if (!httpRespuestaEstado.Error)
+        //{
+        //    estados = RespuestaEstado.Respuesta;
+
+        //    foreach (var item in estados)
+        //    {
+        //        if (item.Estados == estado.Estados )
+        //        {
+        //            Estadoid = item.Id;
+        //        }
+        //    }
+        //}
+
+        //producto.EstadoId = Estadoid;
+   }
 
     private void Cancelar()
     { }

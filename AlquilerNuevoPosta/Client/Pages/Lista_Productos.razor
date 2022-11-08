@@ -5,29 +5,44 @@
 
 
 <a class="btn btn-primary" href="/Registrar_Producto">registrar nuevo producto</a>
+<style>
+
+th, td{
+    border: solid 1px black;
+    padding:20px;
+}
+thead {
+    background-color: #545554;
+    border-bottom: 4px solid black;
+    color:white;
+}
+
+.imagenproducto{
+
+    height:150px;
+    width: 200px;
+
+}
+
+
+</style>
 
 
 <table>
+    <thead>
     <tr>
         <th>Nombre</th>
-        <td></td>
-                <td></td>
-        <td></td>
-        <td></td>
+
         <th>  Precio</th>
-        <td></td>
-                <td></td>
+
 
         <th>  Detalle</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+
         <th>  Estado</th>
+
+        <th></th>
     </tr>
+    </thead>
     @if (productos==null )
     {
         <tr>Cargando......</tr>
@@ -39,25 +54,28 @@
     else
     {
          @foreach (var item in productos )
+         
         {
             <tr>
 
                 <td>@item.NombreProducto</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+ 
                 <td>@item.PrecioProducto</td>
-                <td></td>
-                <td></td>
+
                 <td>@item.DetallesProducto</td>
-                <td></td>
-                <td></td>
-                <td></td>@item.Estado.Estados
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+
+                <td>@item.Estado.Estados</td>
+                
+                
+                
+                <td>
+                    
+                    <img class="imagenproducto" src="@item.foto" />
+                    
+                
+                </td>
+
+                
                 <td>
                     <a class="btn btn-primary"
                        href="Editar/@item.Id">
@@ -83,63 +101,13 @@
     
 
 
-  <table>
-               <tr>
-       <td></td>
-        <td></td>
-        <td></td>
-        <th>  Fotos</th>
-        <td></td>
-        <td></td>
-        <td></td>
-         <td></td>
-        <td></td>
-        <td></td>
-        <th>  Producto</th>
-         <td></td>
-        <td></td>
-        <td></td>
-    </tr>
 
-
-
-      @if ( fotos==null)
-    {
-        <tr>Cargando......</tr>
-    }
-    else if ( fotos.Count ==0)
-    {
-        <tr>No existen datos</tr>
-    }
-    else
-    {
-
-         @foreach(var item in fotos)
-         { <tr>
-                <td>@item.Fotos</td>
-                <td></td>    
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>    
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>@item.Producto.NombreProducto
-                <td></td>
-                <td></td>
-                 <td></td>
-           </tr>
-         }
-      }
-
-      </table>
 
 
 
 @code {
     List<Producto> productos;
-    List<Foto> fotos;
+
     List<Estado> Estados;
 
 
@@ -148,7 +116,7 @@
     {
         base.OnInitializedAsync();
         await Leer();
-        await Leer1();
+
     }
 
     private async Task Leer()
@@ -164,18 +132,7 @@
 
     }
 
-     private async Task Leer1()
 
-    {
-
-        var respuesta = await http.Get<List<Foto>>("api/Fotos");
-        
-        if (!respuesta.Error)
-        {
-            fotos = respuesta.Respuesta;
-        }
-
-    }
 
 
 

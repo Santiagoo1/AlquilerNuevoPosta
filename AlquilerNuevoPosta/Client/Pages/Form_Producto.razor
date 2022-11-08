@@ -53,7 +53,7 @@
     left: 1113px;
     }
 
-    .estado{
+    .foto{
     position: absolute;
     top: 589.8%;
     left: 1200px;
@@ -102,8 +102,18 @@
             <ValidationMessage For="@(()=> foto.Fotos)" />
         </div>*@
 
-       <label class="estado">Estado</label>
+
+         <label class="foto">foto</label>
         <div class="txt4">
+
+            <InputText class= "form-select" @bind-Value ="@producto.foto" /> 
+               <ValidationMessage For="@(()=> producto.foto)" />
+                
+                              
+        </div>
+
+               <label class="estado">estado</label>
+        <div class="txt5">
 
             <InputNumber class= "form-select" @bind-Value ="@producto.EstadoId" /> 
                <ValidationMessage For="@(()=> producto.EstadoId)" />
@@ -121,9 +131,28 @@
 
 </EditForm>
 
-@code {
+@*<EditForm Model="estado">
 
+           <label class="estado">Estado</label>
+        <div class="txt4">
+
+            <InputSelect @bind-Value="@producto.EstadoId" class="form-select" >
+                @foreach (var item in estados)
+            {
+                <option value="@producto.EstadoId"></option>
+            }
+
+            </InputSelect>
+                
+                              
+        </div>
+
+    </EditForm>*@
+
+@code {
+    List<Estado> estados;
     [Parameter] public Producto producto { get; set; }
+    [Parameter] public Estado estado { get; set; }
     //[Parameter] public Foto foto { get; set; }
    // [Parameter] public Estado estado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; 
