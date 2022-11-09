@@ -18,17 +18,19 @@
 th, td{
     border: solid 1px black;
     padding:20px;
+    padding-right:100px;     
 }
 thead {
     background-color: #545554;
     border-bottom: 4px solid black;
     color:white;
+    font-size:20px;
 }
 
 .imagenproducto{
 
     height:150px;
-    width: 200px;
+    width: 300px;
 
 }
 
@@ -270,11 +272,15 @@ thead {
         left: 743px;
     }
 
+    .textos{
+    
+       font-size:20px;
 
+    }
 
 </style>
 
-
+<div class="textos">
 <table>
     <thead>
     <tr>
@@ -304,7 +310,7 @@ thead {
          
         {
             <tr>
-
+                
                 <td>@item.NombreProducto</td>
  
                 <td>@item.PrecioProducto</td>
@@ -313,9 +319,9 @@ thead {
 
                 <td>@item.Estado.Estados</td>
                 
+               
                 
-                
-                <td>
+                <td> 
                     
                     <img class="imagenproducto" src="@item.foto" />
                     
@@ -329,7 +335,7 @@ thead {
                         Editar
                     </a>
                 </td>
-
+                
 
                   @* <td>
                     <a class="btn btn-warning"
@@ -344,8 +350,9 @@ thead {
 
 
     }
+    
   </table>
-
+  </div>
   
 
 <body>
