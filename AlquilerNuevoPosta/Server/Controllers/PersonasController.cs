@@ -129,6 +129,8 @@ namespace AlquilerNuevoPosta.Server.Controllers
             carg.NumeroTelefono = Cargo.NumeroTelefono;
 
             carg.Mail = Cargo.Mail;
+            carg.DireccionId = Cargo.DireccionId;
+            carg.TipoDocumentoId = Cargo.TipoDocumentoId;
 
 
 
