@@ -1,15 +1,16 @@
-﻿@page "/Logiado"
+﻿@page "/Registrar_Usuario"
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+@inject NavigationManager navigationManager
 
 
-<html lang="en">
+ <h1>Registrar Usuario</h1>
+<html>
 
-<head>
+   
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-</head>
-
-    <style>
+      <style>
 
     html{
 
@@ -347,16 +348,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
+    
 
 <body>
 
@@ -420,9 +412,6 @@
             <br />
           
 
-
-
-
         <div class="boton-registro ">
 
             <label for="submit">
@@ -430,81 +419,47 @@
             </label>
         </div>
 
-
-
-
-
-
-
-
-    <div class=" buscados">
-
-        <p> <b>Productos mas buscados</b></p>
-
-
-    </div>
-
-    <div class=" alquilados">
-
-       <p><b>Productos mas alquilados</b></p>
-
-
-    </div>
-
-
-
-
-
-    <div class="imagen">
-    <img class="imagen1" src="https://media.istockphoto.com/photos/portable-electric-generator-picture-id182192586?k=20&m=182192586&s=612x612&w=0&h=9li_tEesZGHBUJenRkJEK-G5wRQk8_SCbjg7xTZ3KfI=" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen2" src="https://media.istockphoto.com/photos/jackhammer-picture-id179658944?k=20&m=179658944&s=612x612&w=0&h=F46yqhwXZsDUPApozBq64HcMwU2Gk8DeAjBWsk3YrdU=" />
-    </div>
-
-
-    <div class="imagen">
-    <img class="imagen3" src="https://arcencohogar.vtexassets.com/arquivos/ids/296136-500-auto?v=637665756194070000&width=500&height=auto&aspect=true" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen4" src="https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_3b324cb695a947bbbe967883917456dc.jpg" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen5" src="https://media.istockphoto.com/photos/yellow-cordless-electronic-screwdriver-drill-hand-tool-isolated-white-picture-id1169548847?k=20&m=1169548847&s=612x612&w=0&h=KxQi66ngRoVejaQrOrZ_9BzDBnLomlkwF7tO9HFDFx0=" />
-    </div>
-
-   <div class="imagen">
-    <img class="imagen6" src="https://pintureriasagitario.com.ar/wp-content/uploads/2020/08/CSL1500.jpg" />
-    </div>
-
-    <div class="imagen">
-
-        <img class="imagen7" src="https://autorentbariloche.com.ar/wp-content/uploads/chevrolet_onix.png" />     
-
-    </div>
-
+        
 
 
 </header>
 
 </body>
 
-
-
-
-    </html> 
-
+</html>
 
 
 
 
 
+ <h1>Registrar Usuario</h1>
 
+
+
+
+<Form_Usuario persona="persona" onCancel="Cancelar" onValidSubmit="Grabar" />
 
 
 @code {
+
+      private Persona persona = new Persona();
+      
+        //private Encargado encargado = new Encargado();
+      
+
+    private async void Grabar()
+
+
+    {
+        var httpRespuesta = await http.Post<Persona>("api/Personas", persona);
+        if (httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+        navigationManager.NavigateTo("/Logiado");
+    }
+
+    private void Cancelar()
+    { }
 
 }

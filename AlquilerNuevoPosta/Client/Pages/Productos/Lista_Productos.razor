@@ -1,7 +1,13 @@
-﻿@page "/Logiado"
+﻿@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+@page "/Productos"
 
 
-<html lang="en">
+<a class="btn btn-primary" href="/Registrar_Producto">registrar nuevo producto</a>
+
+
+
 
 <head>
 
@@ -341,18 +347,25 @@
 
          }
 
+th, td{
+    border: solid 1px black;
+    padding:20px;
+}
+thead {
+    background-color: #545554;
+    border-bottom: 4px solid black;
+    color:white;
+}
 
-    </style>
+.imagenproducto{
+
+    height:150px;
+    width: 200px;
+
+}
 
 
-
-
-
-
-
-
-
-
+</style>
 
 
 
@@ -420,9 +433,6 @@
             <br />
           
 
-
-
-
         <div class="boton-registro ">
 
             <label for="submit">
@@ -431,61 +441,7 @@
         </div>
 
 
-
-
-
-
-
-
-    <div class=" buscados">
-
-        <p> <b>Productos mas buscados</b></p>
-
-
-    </div>
-
-    <div class=" alquilados">
-
-       <p><b>Productos mas alquilados</b></p>
-
-
-    </div>
-
-
-
-
-
-    <div class="imagen">
-    <img class="imagen1" src="https://media.istockphoto.com/photos/portable-electric-generator-picture-id182192586?k=20&m=182192586&s=612x612&w=0&h=9li_tEesZGHBUJenRkJEK-G5wRQk8_SCbjg7xTZ3KfI=" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen2" src="https://media.istockphoto.com/photos/jackhammer-picture-id179658944?k=20&m=179658944&s=612x612&w=0&h=F46yqhwXZsDUPApozBq64HcMwU2Gk8DeAjBWsk3YrdU=" />
-    </div>
-
-
-    <div class="imagen">
-    <img class="imagen3" src="https://arcencohogar.vtexassets.com/arquivos/ids/296136-500-auto?v=637665756194070000&width=500&height=auto&aspect=true" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen4" src="https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_3b324cb695a947bbbe967883917456dc.jpg" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen5" src="https://media.istockphoto.com/photos/yellow-cordless-electronic-screwdriver-drill-hand-tool-isolated-white-picture-id1169548847?k=20&m=1169548847&s=612x612&w=0&h=KxQi66ngRoVejaQrOrZ_9BzDBnLomlkwF7tO9HFDFx0=" />
-    </div>
-
-   <div class="imagen">
-    <img class="imagen6" src="https://pintureriasagitario.com.ar/wp-content/uploads/2020/08/CSL1500.jpg" />
-    </div>
-
-    <div class="imagen">
-
-        <img class="imagen7" src="https://autorentbariloche.com.ar/wp-content/uploads/chevrolet_onix.png" />     
-
-    </div>
-
+    
 
 
 </header>
@@ -493,12 +449,102 @@
 </body>
 
 
+  
 
 
-    </html> 
 
 
 
+
+
+
+
+
+
+
+
+          <br />
+        <br />
+        <br />
+ <br />
+        <br />
+        <br />
+        <br />
+         <br />
+        <br />
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+
+        <th>  Precio</th>
+
+
+        <th>  Detalle</th>
+
+        <th>  Estado</th>
+
+        <th></th>
+    </tr>
+    </thead>
+    @if (productos==null )
+    {
+        <tr>Cargando......</tr>
+    }
+    else if (productos.Count ==0 )
+    {
+        <tr>No existen datos</tr>
+    }
+    else
+    {
+         @foreach (var item in productos )
+         
+        {
+            <tr>
+
+                <td>@item.NombreProducto</td>
+ 
+                <td>@item.PrecioProducto</td>
+
+                <td>@item.DetallesProducto</td>
+
+                <td>@item.Estado.Estados</td>
+                
+                
+                
+                <td>
+                    
+                    <img class="imagenproducto" src="@item.foto" />
+                    
+                
+                </td>
+
+                
+                <td>
+                    <a class="btn btn-primary"
+                       href="Editar/@item.Id">
+                        Editar
+                    </a>
+                </td>
+
+
+                  @* <td>
+                    <a class="btn btn-warning"
+                       @onclick="()=>Eliminar(item)">
+                        Borrar
+                    </a>
+                </td>
+                *@
+
+            </tr>
+        }   
+
+
+    }
+  </table>
+    
 
 
 
@@ -506,5 +552,35 @@
 
 
 @code {
+    List<Producto> productos;
+
+    List<Estado> Estados;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+        await Leer();
+
+    }
+
+    private async Task Leer()
+
+    {
+
+        var respuesta = await http.Get<List<Producto>>("api/Productos");
+        
+        if (!respuesta.Error)
+        {
+            productos = respuesta.Respuesta;
+        }
+
+    }
+
+
+
+
+
 
 }

@@ -1,0 +1,55 @@
+﻿@page "/EditarUsuario/{Id:int}"
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+
+@inject NavigationManager navigationManager
+<h3>Editar Persona</h3>
+
+    <Form_Usuario persona="persona" onCancel="Cancelar" onValidSubmit="Grabar" />
+
+@code {
+    private Persona persona = new Persona();
+    [Parameter] public int Id { get; set; }
+
+  
+
+        protected async override Task OnInitializedAsync()
+    {
+        await Mostrar();
+    }
+
+    private async Task Mostrar()
+    {
+        var respuesta = await http.Get<Persona>($"api/Personas/{Id}");
+        if(respuesta.Error)
+        {
+            var body = respuesta.HttpResponseMessage;
+        }
+        else
+        {
+            persona = respuesta.Respuesta;
+        }
+    }
+    private async void Grabar()
+
+    {
+
+        var respuesta = await http.Put<Persona>($"api/Personas/{Id}", persona);
+        if (respuesta.Error)
+        {
+            var body = respuesta.HttpResponseMessage;
+        }
+        navigationManager.NavigateTo("/Personas");
+
+
+
+
+
+    }
+
+
+    private void Cancelar()
+    {
+    }
+}
