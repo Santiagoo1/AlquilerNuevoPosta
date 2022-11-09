@@ -68,7 +68,7 @@
 
 
                <label> Telefono</label>
-        <div class="txt7">
+        <div class="txt8">
 
             <InputText class= "form-control" @bind-Value ="@persona.NumeroTelefono" /> 
                <ValidationMessage For="@(()=> persona.NumeroTelefono)" />
@@ -78,22 +78,45 @@
 
         
                <label>Tipo documento </label>
-        <div class="txt7">
+        <div class="txt9">
 
             <InputNumber class= "form-select" @bind-Value ="@persona.TipoDocumentoId" /> 
                <ValidationMessage For="@(()=> persona.TipoDocumentoId)" />
                
                               
-        </div>
-
-              <label>Direccion  </label>
-        <div class="txt7">
+   </div>
+    
+     <label>Localidad</label>
+        <div class="txt10">
 
             <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
                <ValidationMessage For="@(()=> persona.DireccionId)" />
                
                               
         </div>
+
+        
+             
+              <label>Departamento  </label>
+        <div class="txt12">
+
+            <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
+               <ValidationMessage For="@(()=> persona.DireccionId)" />
+               
+                              
+        </div>
+
+
+        
+              <label>Provincia  </label>
+        <div class="txt13">
+
+            <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
+               <ValidationMessage For="@(()=> persona.DireccionId)" />
+               
+                              
+        </div>
+
 
         <br />
         <br />
@@ -113,8 +136,11 @@
 
 
 @code {
-
+     
     [Parameter] public Persona persona { get; set; }
+    [Parameter] public TipoDocumento tipodocumentos { get; set; }
+     [Parameter] public Direccion direcciones { get; set; }
+
    // [Parameter] public Cargo cargo { get; set; }
    // [Parameter] public Encargado encargado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; 
