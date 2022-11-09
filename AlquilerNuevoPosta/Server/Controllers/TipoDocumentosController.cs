@@ -21,7 +21,9 @@ namespace AlquilerNuevoPosta.Server.Controllers
         public async Task<ActionResult<List<TipoDocumento>>> Get()
         {
 
-            return await context.TipoDocumentos.ToListAsync();
+            return await context.TipoDocumentos
+                 .Include(m => m.Personas)
+                .ToListAsync();
 
 
         }

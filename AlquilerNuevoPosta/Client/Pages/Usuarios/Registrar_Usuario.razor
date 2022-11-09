@@ -458,6 +458,10 @@
 
 
     {
+
+        List<TipoDocumento> tipoDocumentos;
+       List<Direccion> direcciones;
+
         var httpRespuesta = await http.Post<Persona>("api/Personas", persona);
         if (httpRespuesta.Error)
         {

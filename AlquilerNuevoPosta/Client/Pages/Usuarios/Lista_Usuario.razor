@@ -508,7 +508,15 @@
         <td></td>
         <td></td>
         <td></td>
-           <th>Direccion</th>
+           <th>Localidad</th>
+        <td></td>
+        <td></td>
+        <td></td>
+            <th>Departamento</th>
+        <td></td>
+        <td></td>
+        <td></td>
+            <th>Provincia</th>
         <td></td>
         <td></td>
         <td></td>
@@ -561,18 +569,26 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>@item.TipoDocumentoId</td>
+                <td>@item.TipoDocumento.NombreTipoDocumento</td>
                 <td></td>
                 <td></td>
                 <th></th>
-                  <td>@item.TipoDocumentoId</td>
+                  <td>@item.Direccion.Localidad</td>
                 <td></td>
                 <td></td>
-                <th></th>DireccionId
+                <th></th>
+                    <td>@item.Direccion.Departamento</td>
                 <td></td>
+                <td></td>
+                <th></th>
+                    <td>@item.Direccion.Provincia</td>
+                <td></td>
+                <td></td>
+                <th></th>
+                 <td></td>
                         <td>
                     <a class="btn btn-primary"
-                       href="EditarEmpleado/@item.Id">
+                       href="EditarUsuario/@item.Id">
                         Editar
                     </a>
                 </td>
