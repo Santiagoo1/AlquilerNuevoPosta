@@ -4,7 +4,7 @@
 @inject IHttpService http
 @inject NavigationManager navigationManager
 <h3>Registrar_Producto</h3>
-
+    
 <html>
 
 <style>
@@ -316,9 +316,13 @@
 </head>
 
 <body>
-
+    
 
     <header>
+
+        
+            
+        
 
         <label for="btn-menu" class=icon-menu>
             <div class="toggle-btn">
@@ -331,8 +335,8 @@
         <input type="checkbox" id="btn-menu">
         <div class="cont-menu">
             <nav>
-                <a href="/">Pagina principal</a>
-                <a href="/Registrar_Productos">Registrar productos</a>
+                <a href="/Logiado">Pagina principal</a>
+                <a href="/Registrar_Producto">Registrar productos</a>
                 <a href="/Productos">Mis productos</a>
             </nav>
 
@@ -361,11 +365,7 @@
             <div class="caja-buscador">
             </div>
             <input class="buscador" type="text" name="" placeholder="Buscar producto">
-
-
-
-
-
+ 
 
             <input type="text" id="mail" placeholder="E-mail">
             <input type="text" id="contraseña" placeholder="Contrase&ntilde;a">
@@ -412,8 +412,7 @@
                 </label>
                 @*<input type="submit" @onclick="Grabar" value="Save"  />*@
                 <button class="btn btn-primary" @onclick="Grabar">Alquilar producto</button>
-              
-
+             
             </div>
 
         </section>
