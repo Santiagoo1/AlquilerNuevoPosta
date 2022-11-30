@@ -28,13 +28,6 @@
             <ValidationMessage For="@(()=> persona.Apellido)" />
         </div>
 
-        <label >DNI</label>
-        <div class="txt3">
-
-            <InputText class="form-control" @bind-Value="@persona.DNI" />
-            <ValidationMessage For="@(()=> persona.DNI)" />
-        </div>
-
    
 
        <label >Contraseña</label>
@@ -47,75 +40,11 @@
         </div>
 
 
-           <label>RepetirContraseña</label>
-        <div class="txt5">
 
-            <InputText class= "form-control" @bind-Value ="@persona.RepetirContraseña" /> 
-               <ValidationMessage For="@(()=> persona.RepetirContraseña)" />
-               
-                              
-        </div>
-
-   
-           <label>Mail</label>
-        <div class="txt6">
-
-            <InputText class= "form-control" @bind-Value ="@persona.Mail" /> 
-               <ValidationMessage For="@(()=> persona.Mail)" />
-               
-                              
-        </div>
-
-
-               <label> Telefono</label>
-        <div class="txt8">
-
-            <InputText class= "form-control" @bind-Value ="@persona.NumeroTelefono" /> 
-               <ValidationMessage For="@(()=> persona.NumeroTelefono)" />
-               
-                              
-        </div>
-
-        
-               <label>Tipo documento </label>
-        <div class="txt9">
-
-            <InputNumber class= "form-select" @bind-Value ="@persona.TipoDocumentoId" /> 
-               <ValidationMessage For="@(()=> persona.TipoDocumentoId)" />
-               
-                              
-   </div>
-    
-     <label>Localidad</label>
-        <div class="txt10">
-
-            <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
-               <ValidationMessage For="@(()=> persona.DireccionId)" />
-               
-                              
-        </div>
-
-        
-             
-              <label>Departamento  </label>
-        <div class="txt12">
-
-            <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
-               <ValidationMessage For="@(()=> persona.DireccionId)" />
-               
-                              
-        </div>
 
 
         
-              <label>Provincia  </label>
-        <div class="txt13">
 
-            <InputNumber class= "form-select" @bind-Value ="@persona.DireccionId" /> 
-               <ValidationMessage For="@(()=> persona.DireccionId)" />
-               
-                              
-        </div>
 
 
         <br />

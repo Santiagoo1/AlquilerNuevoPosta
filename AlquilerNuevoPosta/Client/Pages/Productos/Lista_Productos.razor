@@ -41,6 +41,7 @@ thead {
     body {
         font-family: Helvetica;
         margin: 0;
+        overflow:scroll;
     }
 
     header {
@@ -214,10 +215,6 @@ thead {
             }
 
 
-    
-
-
-
     a, .btn-link {
         color: #ffffff;
     }
@@ -242,10 +239,6 @@ thead {
         cursor: pointer;
         width: 128px
     }
-
-
-
-
 
 
     #banner nav:hover {
@@ -320,6 +313,8 @@ thead {
                 <td>@item.DetallesProducto</td>
 
                 <td>@item.Estado.Estados</td>
+
+               
                 
                
                 
@@ -333,8 +328,8 @@ thead {
                 
                 <td>
                     <a class="btn btn-primary"
-                       href="Editar/@item.Id">
-                        Editar
+                       href="Alquilar/@item.Id">
+                        Alquilar
                     </a>
                 </td>
                 
@@ -407,10 +402,6 @@ thead {
             </section>
             <section id="textos">
 
-
-
-
-
             </section>
             <input class="buscador" type="text" name="" placeholder="Buscar producto">
 
@@ -423,13 +414,8 @@ thead {
           <h1>Lista de Productos</h1>
 
         </header>
-        </body>
+ </body>
     
-
-
-
-
-
 
 @code {
     List<ProductoPublicado> productos;

@@ -64,7 +64,39 @@ namespace Alquiler.BD.Migrations
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
                 name: "ProductosAlquilados",
+========
+                name: "Personas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    DireccionId = table.Column<int>(type: "int", nullable: true),
+                    TipoDocumentoId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Personas_Direcciones_DireccionId",
+                        column: x => x.DireccionId,
+                        principalTable: "Direcciones",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Personas_TipoDocumentos_TipoDocumentoId",
+                        column: x => x.TipoDocumentoId,
+                        principalTable: "TipoDocumentos",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Productos",
+>>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -74,7 +106,11 @@ namespace Alquiler.BD.Migrations
                     DetallesProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EstadoId = table.Column<int>(type: "int", nullable: false),
+<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
+========
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
+>>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
                 },
                 constraints: table =>
                 {
@@ -121,37 +157,10 @@ namespace Alquiler.BD.Migrations
                         principalTable: "Estados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Personas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    RepetirContraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NumeroTelefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    TipoDocumentoId = table.Column<int>(type: "int", nullable: false),
-                    DireccionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Personas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Personas_Direcciones_DireccionId",
-                        column: x => x.DireccionId,
-                        principalTable: "Direcciones",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Personas_TipoDocumentos_TipoDocumentoId",
-                        column: x => x.TipoDocumentoId,
-                        principalTable: "TipoDocumentos",
+                        name: "FK_Productos_Personas_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Personas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -196,30 +205,45 @@ namespace Alquiler.BD.Migrations
                 name: "IX_ProductosPublicados_EstadoId",
                 table: "ProductosPublicados",
                 column: "EstadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Productos_PersonaId",
+                table: "Productos",
+                column: "PersonaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Personas");
+                name: "Productos");
 
             migrationBuilder.DropTable(
+<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
                 name: "ProductosAlquilados");
 
             migrationBuilder.DropTable(
                 name: "ProductosPublicados");
+========
+                name: "Estados");
+
+            migrationBuilder.DropTable(
+                name: "Personas");
+>>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
 
             migrationBuilder.DropTable(
                 name: "Direcciones");
 
             migrationBuilder.DropTable(
                 name: "TipoDocumentos");
+<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
 
             migrationBuilder.DropTable(
                 name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "Estados");
+========
+>>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
         }
     }
 }

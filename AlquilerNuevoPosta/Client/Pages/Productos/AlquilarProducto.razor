@@ -1,0 +1,100 @@
+﻿@page "/Alquilar/{Id:int}"
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
+@inject NavigationManager navigationManager
+
+
+<style>
+
+    .imagenproducto{
+    
+        width: 300px;
+        position:relative;
+        left:50px;
+        top:200px;
+    }
+
+    .foto{
+    
+        width: 400px;
+        position: fixed;
+        left:500px;
+    }
+
+    .card{
+         width: 400px;
+        position: fixed;
+        left:1000px;
+        top: 300px;
+        height:200px;
+    
+    }
+
+    .card{
+    
+        font-size:20px;
+
+    }
+    .botonalquiler{
+    
+    width: 3000px;
+    
+    }
+
+</style>
+
+<html>
+
+    <div class="producto">
+    <div class= "foto">
+        <img class="imagenproducto" src="@producto.foto" />
+    </div>
+
+    <div class="card">
+
+                <div class=" card-body">
+            <h5 class="card-title mb-3">
+                <b>@producto.NombreProducto</b>
+            </h5>    
+                
+            <p class="card-text">
+                <b>Precio:$@producto.PrecioProducto.ToString()</b>
+                <br />
+               <b> Detalle:@producto.DetallesProducto</b>
+            </p>
+            <div class="card-footer">
+                  <div class="botonalquiler">
+                <button type="submit" class="btn btn-primary" >Alquilar</button>
+                 </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+ </html>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Producto producto = new Producto();
+    List<Producto> productos;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        
+        var respuesta = await http.Get<Producto>($"api/Productos/{Id}");
+        if(respuesta.Error)
+        {
+            var body = respuesta.HttpResponseMessage;
+        }
+        else
+        {
+            producto = respuesta.Respuesta;
+        }
+    }
+
+}
