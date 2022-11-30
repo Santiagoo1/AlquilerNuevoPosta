@@ -1,5 +1,8 @@
 ﻿@page "/Logiado"
-
+@page "/{categoriaurl}"
+@using Alquiler.BD.Data.Entidades
+@using AlquilerNuevoPosta.Client.Servicios
+@inject IHttpService http
 
 <html lang="en">
 
@@ -383,7 +386,7 @@
                 <h1>¡Alquiler por 2 pesos!</h1>
             </div>
             <nav>
-                <a href="" class="nav-link">Categoria/Rubro</a>
+                <a href="@producto.CategoriaId" class="nav-link">Electrodomestico</a>
                 <a href="" class="nav-link">Precio</a>
                 <a href="" class="nav-link">Ubicacion</a>
             </nav>
@@ -495,4 +498,19 @@
 
 @code {
 
+   
+
+    public Categoria categoria = new Categoria();
+
+    public ProductoPublicado producto = new ProductoPublicado();
+
+    [Parameter]
+    public string CategoriaUrl { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+
+       var respuesta = await http.GetProductos<List<ProductoPublicado>>($"api/Productos/{CategoriaUrl}");
+
+    }
 }

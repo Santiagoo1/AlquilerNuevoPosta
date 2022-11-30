@@ -432,7 +432,7 @@ thead {
 
 
 @code {
-    List<Producto> productos;
+    List<ProductoPublicado> productos;
 
     List<Estado> Estados;
 
@@ -449,7 +449,7 @@ thead {
 
     {
 
-        var respuesta = await http.Get<List<Producto>>("api/Productos");
+        var respuesta = await http.Get<List<ProductoPublicado>>("api/Productos");
         
         if (!respuesta.Error)
         {

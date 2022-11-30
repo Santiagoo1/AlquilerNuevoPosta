@@ -80,7 +80,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             }
 
             var est = context.Estados.Where(e => e.Id == id).FirstOrDefault();
-            var produ = context.Productos.Where(e => e.Id == id).FirstOrDefault();
+            var produ = context.ProductosPublicados.Where(e => e.Id == id).FirstOrDefault();
 
 
             if (est == null)

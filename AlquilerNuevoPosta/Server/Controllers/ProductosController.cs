@@ -2,6 +2,7 @@
 using Alquiler.BD;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AlquilerNuevoPosta.Client.Servicios;
 
 namespace AlquilerNuevoPosta.Server.Controllers
 {
@@ -10,19 +11,23 @@ namespace AlquilerNuevoPosta.Server.Controllers
     public class ProductosController : ControllerBase
     {
         private readonly BdContext context;
+  
 
         public ProductosController(BdContext context)
         {
             this.context = context;
         }
 
+       
+
+     
 
         [HttpGet]
-        public async Task<ActionResult<List<Producto>>> Get()
+        public async Task<ActionResult<List<ProductoPublicado>>> Get()
         {
-            return await context.Productos
-                
-                                         
+            return await context.ProductosPublicados
+
+
                                          .Include(m => m.Estado)
                                              .ToListAsync();
 
@@ -30,9 +35,9 @@ namespace AlquilerNuevoPosta.Server.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Producto>> Get(int id)
+        public async Task<ActionResult<ProductoPublicado>> Get(int id)
         {
-            var venta = await context.Productos
+            var venta = await context.ProductosPublicados
                                          .Where(e => e.Id == id)
                                          
                                          .Include(m => m.Estado)
@@ -45,14 +50,26 @@ namespace AlquilerNuevoPosta.Server.Controllers
             return venta;
         }
 
+        [HttpGet("Categoriaurl/{categoriaurl}")]
+        public async Task<ActionResult<ProductoPublicado>> ProductoCategoria(int categoriaurl)
+        {
+            var especialidad = await context.ProductosPublicados
+                                     .Where(e => e.CategoriaId == categoriaurl )
+                                     .FirstOrDefaultAsync();
+            if (especialidad == null)
+            {
+                return NotFound($"No existe la especialidad de código={categoriaurl}");
+            }
+            return especialidad;
+        }
 
         [HttpPost]
-        public async Task<ActionResult<List<Producto>>> Post(Producto producto)
+        public async Task<ActionResult<List<ProductoPublicado>>> Post(ProductoPublicado producto)
         {
             try
             {
 
-                context.Productos.Add(producto);
+                context.ProductosPublicados.Add(producto);
                 await context.SaveChangesAsync();
                 return Ok(producto);
             }
@@ -63,7 +80,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, [FromBody] Producto producto)
+        public ActionResult Put(int id, [FromBody] ProductoPublicado producto)
         {
 
 
@@ -72,7 +89,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
                 return BadRequest("No existe el Producto");
             }
 
-            var produ = context.Productos.Where(e => e.Id == id).FirstOrDefault();
+            var produ = context.ProductosPublicados.Where(e => e.Id == id).FirstOrDefault();
            
             
 
@@ -90,7 +107,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             try
             {
                 //throw(new Exception("Cualquier Verdura"));
-                context.Productos.Update(produ);
+                context.ProductosPublicados.Update(produ);
                 context.SaveChanges();
                 return Ok();
             }
@@ -105,7 +122,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-            var produ = context.Productos.Where(x => x.Id == id).FirstOrDefault();
+            var produ = context.ProductosPublicados.Where(x => x.Id == id).FirstOrDefault();
 
             if (produ == null)
             {
@@ -114,7 +131,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
             try
             {
-                context.Productos.Remove(produ);
+                context.ProductosPublicados.Remove(produ);
                 context.SaveChanges();
                 return Ok($"El registro de {produ.NombreProducto} ha sido borrado.");
             }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Alquiler.BD.Data.Entidades
 {
-    public class Estado
+    public class Categoria
     {
         public int Id { get; set; }
 
-        public string Estados { get; set; }
+        public string  nombre { get; set; }
 
-        public List<ProductoPublicado> Productos { get; set; }
+        public string Url { get; set; }
     }
 }

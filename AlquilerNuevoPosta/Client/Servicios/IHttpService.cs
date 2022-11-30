@@ -6,12 +6,14 @@ namespace AlquilerNuevoPosta.Client.Servicios
     {
         List<Estado> Estados { get; set; }
 
-        List<Producto> Productos { get; set; }
+        List<ProductoPublicado> Productos { get; set; }
 
       
         Task<HttpRespuesta<T>> Get<T>(string url);
+        Task<HttpRespuesta<Categoria>> GetCategoria<Categoria>(string categoriaurl);
         Task<HttpRespuesta<object>> Post<T>(string url, T enviar);
         Task<HttpRespuesta<object>> Put<T>(string url, T enviar);
         Task<HttpRespuesta<object>> Delete(string url);
+        Task<HttpRespuesta<Categoria>> GetProductos<Categoria>(string categoriaurl);
     }
 }

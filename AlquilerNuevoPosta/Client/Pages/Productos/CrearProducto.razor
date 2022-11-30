@@ -301,7 +301,7 @@
 
 @code {
 
-        private Producto producto = new Producto();
+        private ProductoPublicado producto = new ProductoPublicado();
         //private Estado estado = new Estado();
       
 
@@ -315,7 +315,7 @@
         int Estadoid = 0;
        
 
-        var httpRespuesta = await http.Post<Producto>("api/Productos", producto);
+        var httpRespuesta = await http.Post<ProductoPublicado>("api/Productos", producto);
         if (httpRespuesta.Error)
         {
             var body = httpRespuesta.HttpResponseMessage;

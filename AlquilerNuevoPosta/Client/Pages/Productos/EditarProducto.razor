@@ -396,7 +396,7 @@
     <Form_Producto producto="producto" onCancel="Cancelar" onValidSubmit="Grabar" />
 
 @code {
-    private Producto producto = new Producto();
+    private ProductoPublicado producto = new ProductoPublicado();
     [Parameter] public int Id { get; set; }
 
   
@@ -408,7 +408,7 @@
 
     private async Task Mostrar()
     {
-        var respuesta = await http.Get<Producto>($"api/Productos/{Id}");
+        var respuesta = await http.Get<ProductoPublicado>($"api/Productos/{Id}");
         if(respuesta.Error)
         {
             var body = respuesta.HttpResponseMessage;
@@ -422,7 +422,7 @@
 
     {
 
-        var respuesta = await http.Put<Producto>($"api/Productos/{Id}", producto);
+        var respuesta = await http.Put<ProductoPublicado>($"api/Productos/{Id}", producto);
         if (respuesta.Error)
         {
             var body = respuesta.HttpResponseMessage;

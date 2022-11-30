@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alquiler.BD.Data.Entidades
 {
-    public class Producto
+    public class ProductoPublicado
     {
 
         public int Id { get; set; }
@@ -28,5 +28,8 @@ namespace Alquiler.BD.Data.Entidades
       
         public int EstadoId { get; set; }  
         public Estado Estado { get; set; }
+
+        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
     }
 }

@@ -2,20 +2,29 @@
 using System.Text.Json;
 using AlquilerNuevoPosta.Client.Pages;
 using System.Text;
+using Alquiler.BD;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlquilerNuevoPosta.Client.Servicios
 {
-    public class HttpService : IHttpService
+    public class HttpService : IHttpService 
     {
         private readonly HttpClient http;
+
+        private readonly BdContext context;
+
+        public HttpService(BdContext context)
+        {
+            this.context = context;
+        }
 
         public HttpService(HttpClient http)
         {
             this.http = http;
         }
 
-     public List<Estado> Estados { get; set; }=new List<Estado>();
-        public List<Producto> Productos { get; set; } = new List<Producto>();
+        public List<Estado> Estados { get; set; } = new List<Estado>();
+        public List<ProductoPublicado> Productos { get; set; } = new List<ProductoPublicado>();
 
         public async Task<HttpRespuesta<T>> Get<T>(string url)
         {
@@ -90,6 +99,41 @@ namespace AlquilerNuevoPosta.Client.Servicios
             return JsonSerializer.Deserialize<T>(respuestaStr,
                 new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
+
+
+
+        public async Task<HttpRespuesta<Categoria>> GetCategoria<Categoria>(string categoriaurl)
+        {
+
+            var response = await http.GetAsync(categoriaurl);
+            if (response.IsSuccessStatusCode)
+            {
+
+                var respuesta = await DeserializarRepuesta<Categoria>(response);
+                return new HttpRespuesta<Categoria>(respuesta, false, response);
+            }
+            else
+            {
+                return new HttpRespuesta<Categoria>(default, true, response);
+            }
+        }
+
+        public async Task<HttpRespuesta<T>> GetProductos<T>(string categoriaurl)
+        {
+
+            var response = await http.GetAsync(categoriaurl);
+            if (response.IsSuccessStatusCode)
+            {
+
+                var respuesta = await DeserializarRepuesta<T>(response);
+                return new HttpRespuesta<T>(respuesta, false, response);
+            }
+            else
+            {
+                return new HttpRespuesta<T>(default, true, response);
+            }
+        }
+
 
     }
 
