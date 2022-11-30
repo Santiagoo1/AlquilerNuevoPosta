@@ -41,6 +41,7 @@ thead {
     body {
         font-family: Helvetica;
         margin: 0;
+        overflow:scroll;
     }
 
     header {
@@ -312,6 +313,8 @@ thead {
                 <td>@item.DetallesProducto</td>
 
                 <td>@item.Estado.Estados</td>
+
+               
                 
                
                 
@@ -325,8 +328,8 @@ thead {
                 
                 <td>
                     <a class="btn btn-primary"
-                       href="Editar/@item.Id">
-                        Editar
+                       href="Alquilar/@item.Id">
+                        Alquilar
                     </a>
                 </td>
                 
@@ -411,7 +414,7 @@ thead {
           <h1>Lista de Productos</h1>
 
         </header>
-        </body>
+ </body>
     
 
 @code {

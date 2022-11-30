@@ -4,7 +4,7 @@
 
 namespace Alquiler.BD.Migrations
 {
-    public partial class Inicio : Migration
+    public partial class tablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,6 +50,34 @@ namespace Alquiler.BD.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Personas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    DireccionId = table.Column<int>(type: "int", nullable: true),
+                    TipoDocumentoId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Personas_Direcciones_DireccionId",
+                        column: x => x.DireccionId,
+                        principalTable: "Direcciones",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Personas_TipoDocumentos_TipoDocumentoId",
+                        column: x => x.TipoDocumentoId,
+                        principalTable: "TipoDocumentos",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Productos",
                 columns: table => new
                 {
@@ -59,7 +87,8 @@ namespace Alquiler.BD.Migrations
                     PrecioProducto = table.Column<int>(type: "int", nullable: false),
                     DetallesProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EstadoId = table.Column<int>(type: "int", nullable: false)
+                    EstadoId = table.Column<int>(type: "int", nullable: false),
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,37 +99,10 @@ namespace Alquiler.BD.Migrations
                         principalTable: "Estados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Personas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    RepetirContraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NumeroTelefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    TipoDocumentoId = table.Column<int>(type: "int", nullable: false),
-                    DireccionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Personas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Personas_Direcciones_DireccionId",
-                        column: x => x.DireccionId,
-                        principalTable: "Direcciones",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Personas_TipoDocumentos_TipoDocumentoId",
-                        column: x => x.TipoDocumentoId,
-                        principalTable: "TipoDocumentos",
+                        name: "FK_Productos_Personas_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Personas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -119,24 +121,29 @@ namespace Alquiler.BD.Migrations
                 name: "IX_Productos_EstadoId",
                 table: "Productos",
                 column: "EstadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Productos_PersonaId",
+                table: "Productos",
+                column: "PersonaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Personas");
+                name: "Productos");
 
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "Estados");
+
+            migrationBuilder.DropTable(
+                name: "Personas");
 
             migrationBuilder.DropTable(
                 name: "Direcciones");
 
             migrationBuilder.DropTable(
                 name: "TipoDocumentos");
-
-            migrationBuilder.DropTable(
-                name: "Estados");
         }
     }
 }

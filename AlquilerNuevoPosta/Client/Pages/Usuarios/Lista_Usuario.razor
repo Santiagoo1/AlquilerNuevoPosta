@@ -8,16 +8,19 @@
 <head>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel="stylesheet" />
 </head>
 
     <style>
+
 
     html{
 
     box-sizing: border-box;
 
     }
+
+
 
     body {
 
@@ -406,20 +409,7 @@
 </body>
 
 
-  
 
-
-
-
-
- 
-
-
-
-
-
-
-  
 
           <br />
         <br />
@@ -450,56 +440,15 @@
     <tr>
 
            <th>Id</th>
-        <td></td>
-        <td></td>
-        <td></td>
+
         <th>Nombre</th>
-        <td></td>
-        <td></td>
-        <td></td>
+
         <td></td>
         <th>Apellido</th>
-        <td></td>
-         <td></td>
-          <td></td>
-        <th>DNI</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+
          <th>Contraseña</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th>RepetirContraseña</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th>Mail</th>
-        <td></td>
-        <td></td>
-        <th>Telefono </th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th>TipoDocumento</th>
-        <td></td>
-        <td></td>
-        <td></td>
-           <th>Localidad</th>
-        <td></td>
-        <td></td>
-        <td></td>
-            <th>Departamento</th>
-        <td></td>
-        <td></td>
-        <td></td>
-            <th>Provincia</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th></th>
+
+ 
          
     </tr>
     @if (personas==null )
@@ -528,43 +477,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>@item.DNI</td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td>@item.Contraseña</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td>@item.RepetirContraseña</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>@item.Mail
-                <td></td>
-                <td></td>
-                <td>@item.NumeroTelefono</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>@item.TipoDocumento.NombreTipoDocumento</td>
-                <td></td>
-                <td></td>
-                <th></th>
-                  <td>@item.Direccion.Localidad</td>
-                <td></td>
-                <td></td>
-                <th></th>
-                    <td>@item.Direccion.Departamento</td>
-                <td></td>
-                <td></td>
-                <th></th>
-                    <td>@item.Direccion.Provincia</td>
-                <td></td>
-                <td></td>
-                <th></th>
-                 <td></td>
+
                         <td>
                     <a class="btn btn-primary"
                        href="EditarUsuario/@item.Id">

@@ -11,7 +11,7 @@ namespace Alquiler.BD
     public class BdContext : DbContext
     {
 
-        public BdContext(DbContextOptions options) : base(options)
+        public BdContext(DbContextOptions <BdContext> options ) : base(options)
         {
         }
         public DbSet<Persona> Personas { get; set; }
