@@ -33,7 +33,7 @@ namespace Alquiler.BD.Data.Entidades
         [MaxLength(25, ErrorMessage = "La Contraseña no debe superar los 25 caracteres")]
         public string Contraseña { get; set; }
 
-        public List<ProductoPublicado> productos { get; set; }
+
 
 
     }

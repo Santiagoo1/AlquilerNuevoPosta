@@ -30,7 +30,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
 
                                          .Include(m => m.Estado)
-                                         .Include(m=> m.Persona)
+
                                              .ToListAsync();
 
 
@@ -43,7 +43,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
                                          .Where(e => e.Id == id)
 
                                          .Include(m => m.Estado)
-                                         .Include(m => m.Persona)
+
                                          .FirstOrDefaultAsync();
 
             if (venta == null)

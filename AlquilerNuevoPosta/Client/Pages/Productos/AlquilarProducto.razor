@@ -86,7 +86,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        
+
         var respuesta = await http.Get<ProductoPublicado>($"api/Productos/{Id}");
         if(respuesta.Error)
         {
@@ -98,23 +98,24 @@
         }
     }
 
-        private async void Grabar()
+    private async void Grabar()
 
 
     {
 
-          List<Estado> estados;
+
+        List<Estado> estados;
       
         int Estadoid = 0;
        
 
-        var httpRespuesta = await http.Post<ProductoPublicado>("api/ProductoAlquilado", producto);
+        var httpRespuesta = await http.Post<ProductoPublicado>("api/Productos", producto);
         if (httpRespuesta.Error)
         {
             var body = httpRespuesta.HttpResponseMessage;
         }
         navigationManager.NavigateTo("/Productos");
-
+    
     
    }
 }
