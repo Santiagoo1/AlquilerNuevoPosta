@@ -12,11 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alquiler.BD.Migrations
 {
     [DbContext(typeof(BdContext))]
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.Designer.cs
-    [Migration("20221129235312_tablas")]
-========
-    [Migration("20221123145144_tablas")]
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.Designer.cs
+    [Migration("20221201151948_tablas")]
     partial class tablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,7 +187,8 @@ namespace Alquiler.BD.Migrations
 
                     b.HasIndex("EstadoId");
 
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.Designer.cs
+                    b.HasIndex("PersonaId");
+
                     b.ToTable("ProductosAlquilados");
                 });
 
@@ -217,6 +214,9 @@ namespace Alquiler.BD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PersonaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PrecioProducto")
                         .HasColumnType("int");
 
@@ -229,12 +229,9 @@ namespace Alquiler.BD.Migrations
 
                     b.HasIndex("EstadoId");
 
-                    b.ToTable("ProductosPublicados");
-========
                     b.HasIndex("PersonaId");
 
-                    b.ToTable("Productos");
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.Designer.cs
+                    b.ToTable("ProductosPublicados");
                 });
 
             modelBuilder.Entity("Alquiler.BD.Data.Entidades.TipoDocumento", b =>
@@ -280,9 +277,17 @@ namespace Alquiler.BD.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Alquiler.BD.Data.Entidades.Persona", "Persona")
+                        .WithMany()
+                        .HasForeignKey("PersonaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Categoria");
 
                     b.Navigation("Estado");
+
+                    b.Navigation("Persona");
                 });
 
             modelBuilder.Entity("Alquiler.BD.Data.Entidades.ProductoPublicado", b =>
@@ -299,15 +304,13 @@ namespace Alquiler.BD.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.Designer.cs
-                    b.Navigation("Categoria");
-========
                     b.HasOne("Alquiler.BD.Data.Entidades.Persona", "Persona")
                         .WithMany("productos")
                         .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.Designer.cs
+
+                    b.Navigation("Categoria");
 
                     b.Navigation("Estado");
 

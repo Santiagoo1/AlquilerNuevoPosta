@@ -65,7 +65,7 @@
             </p>
             <div class="card-footer">
                   <div class="botonalquiler">
-                <button type="submit" class="btn btn-primary" >Alquilar</button>
+                <button type="submit" @onclick="@Grabar" class="btn btn-primary" >Alquilar</button>
                  </div>
 
             </div>
@@ -80,13 +80,14 @@
 
 @code {
     [Parameter] public int Id { get; set; }
-    private Producto producto = new Producto();
-    List<Producto> productos;
+    private ProductoPublicado producto = new ProductoPublicado();
+    private ProductoAlquilado produ = new ProductoAlquilado();
+    List<ProductoPublicado> productos;
 
     protected override async Task OnParametersSetAsync()
     {
         
-        var respuesta = await http.Get<Producto>($"api/Productos/{Id}");
+        var respuesta = await http.Get<ProductoPublicado>($"api/Productos/{Id}");
         if(respuesta.Error)
         {
             var body = respuesta.HttpResponseMessage;
@@ -97,4 +98,23 @@
         }
     }
 
+        private async void Grabar()
+
+
+    {
+
+          List<Estado> estados;
+      
+        int Estadoid = 0;
+       
+
+        var httpRespuesta = await http.Post<ProductoPublicado>("api/ProductoAlquilado", producto);
+        if (httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+        navigationManager.NavigateTo("/Productos");
+
+    
+   }
 }

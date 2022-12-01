@@ -64,9 +64,6 @@ namespace Alquiler.BD.Migrations
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
-                name: "ProductosAlquilados",
-========
                 name: "Personas",
                 columns: table => new
                 {
@@ -95,8 +92,7 @@ namespace Alquiler.BD.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Productos",
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
+                name: "ProductosAlquilados",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -106,11 +102,8 @@ namespace Alquiler.BD.Migrations
                     DetallesProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EstadoId = table.Column<int>(type: "int", nullable: false),
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
-                    CategoriaId = table.Column<int>(type: "int", nullable: false)
-========
+                    CategoriaId = table.Column<int>(type: "int", nullable: false),
                     PersonaId = table.Column<int>(type: "int", nullable: false)
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
                 },
                 constraints: table =>
                 {
@@ -127,6 +120,12 @@ namespace Alquiler.BD.Migrations
                         principalTable: "Estados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductosAlquilados_Personas_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Personas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,7 +139,8 @@ namespace Alquiler.BD.Migrations
                     DetallesProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EstadoId = table.Column<int>(type: "int", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false),
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,7 +158,7 @@ namespace Alquiler.BD.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Productos_Personas_PersonaId",
+                        name: "FK_ProductosPublicados_Personas_PersonaId",
                         column: x => x.PersonaId,
                         principalTable: "Personas",
                         principalColumn: "Id",
@@ -197,6 +197,11 @@ namespace Alquiler.BD.Migrations
                 column: "EstadoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductosAlquilados_PersonaId",
+                table: "ProductosAlquilados",
+                column: "PersonaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductosPublicados_CategoriaId",
                 table: "ProductosPublicados",
                 column: "CategoriaId");
@@ -207,43 +212,33 @@ namespace Alquiler.BD.Migrations
                 column: "EstadoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_PersonaId",
-                table: "Productos",
+                name: "IX_ProductosPublicados_PersonaId",
+                table: "ProductosPublicados",
                 column: "PersonaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Productos");
-
-            migrationBuilder.DropTable(
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
                 name: "ProductosAlquilados");
 
             migrationBuilder.DropTable(
                 name: "ProductosPublicados");
-========
-                name: "Estados");
-
-            migrationBuilder.DropTable(
-                name: "Personas");
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
-
-            migrationBuilder.DropTable(
-                name: "Direcciones");
-
-            migrationBuilder.DropTable(
-                name: "TipoDocumentos");
-<<<<<<<< HEAD:Alquiler.BD/Migrations/20221129235312_tablas.cs
 
             migrationBuilder.DropTable(
                 name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "Estados");
-========
->>>>>>>> 88df2287a785cd3e1d30234533a531e9c6500f86:Alquiler.BD/Migrations/20221123145144_tablas.cs
+
+            migrationBuilder.DropTable(
+                name: "Personas");
+
+            migrationBuilder.DropTable(
+                name: "Direcciones");
+
+            migrationBuilder.DropTable(
+                name: "TipoDocumentos");
         }
     }
 }

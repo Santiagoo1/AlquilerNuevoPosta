@@ -22,9 +22,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         {
 
             return await context.Personas
-                 .Include(m => m.TipoDocumento)
-                  .Include(m => m.Direccion)
-                  .ToListAsync();
+                 .ToListAsync();
 
 
         }
@@ -34,10 +32,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
         public async Task<ActionResult<Persona>> Get(int id)
         {
             var person = await context.Personas
-
-                .Where(e => e.Id == id)
-                .Include(m => m.Direccion)
-                   .Include(m => m.TipoDocumento)
+                
                 .FirstOrDefaultAsync();
 
 
@@ -84,8 +79,8 @@ namespace AlquilerNuevoPosta.Server.Controllers
             var person = await context.Personas
 
              .Where(x => x.Nombre == nombre)
-             .Include(m => m.Direccion)
-                   .Include(m => m.TipoDocumento)
+
+
            .FirstOrDefaultAsync();
 
 
@@ -126,11 +121,14 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
             carg.DNI = Cargo.DNI;
 
-            carg.NumeroTelefono = Cargo.NumeroTelefono;
+            carg.Nombre = Cargo.Nombre;
 
-            carg.Mail = Cargo.Mail;
-            carg.DireccionId = Cargo.DireccionId;
-            carg.TipoDocumentoId = Cargo.TipoDocumentoId;
+            carg.Apellido = Cargo.Apellido;
+
+            carg.Contraseña = Cargo.Contraseña;
+
+    
+
 
 
 

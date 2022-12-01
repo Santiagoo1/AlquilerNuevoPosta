@@ -139,6 +139,16 @@
                               
         </div>
 
+        
+               <label class="categoria">Categoria</label>
+        <div class="txt5">
+
+            <InputNumber class= "form-select" @bind-Value ="@producto.CategoriaId" /> 
+               <ValidationMessage For="@(()=> producto.CategoriaId)" />
+                
+                              
+        </div>
+
    
     <div class="aceptar">
    <button type="submit" class="btn btn-primary" >Aceptar</button>

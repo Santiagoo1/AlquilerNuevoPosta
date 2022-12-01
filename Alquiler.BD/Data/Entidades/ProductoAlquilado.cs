@@ -30,5 +30,8 @@ namespace Alquiler.BD.Data.Entidades
 
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
+
+        public int PersonaId { get; set; }
+        public Persona Persona { get; set; }
     }
 }
