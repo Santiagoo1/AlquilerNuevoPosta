@@ -50,7 +50,7 @@ namespace Alquiler.BD
 
         public DbSet<ProductoPublicado> ProductosPublicados { get; set; }
 
-        public DbSet<ProductoAlquilado> ProductosAlquilados { get; set; }
+        
 
         public DbSet<Direccion> Direcciones { get; set; }
 

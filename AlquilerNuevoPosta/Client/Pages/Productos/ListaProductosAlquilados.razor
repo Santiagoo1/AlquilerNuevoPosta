@@ -1,7 +1,7 @@
-﻿@*@using Alquiler.BD.Data.Entidades
+﻿@using Alquiler.BD.Data.Entidades
 @using AlquilerNuevoPosta.Client.Servicios
 @inject IHttpService http
-@page "/Productos"
+@page "/Productos2"
 
 
 <a class="btn btn-primary" href="/Registrar_Producto">registrar nuevo producto</a>
@@ -554,17 +554,17 @@ thead {
 </style>
 
 
-    @if (productos==null )
+    @if (productos == null )
     {
         <tr>Cargando......</tr>
     }
-    else if (productos.Count ==0 )
+    else if (productos.Count == 0 )
     {
         <tr>No existen datos</tr>
     }
     else
     {
-         @foreach (var item in productos )
+         @foreach (var item in productosalquilados )
          
         {
 
@@ -591,7 +591,7 @@ thead {
                   <div class="botonalquiler">
                 <a class="btn btn-primary"
                        href="Alquilar/@item.Id">
-                        Editar
+                        Ir a alquiler
                     </a>
                  </div>
 
@@ -677,32 +677,44 @@ thead {
 
 
 @code {
-       List<ProductoAlquilado> productos;
+
 
     List<Estado> Estados;
+
+    public List<ProductoPublicado> productos = new List<ProductoPublicado>();
+
+    public List<ProductoPublicado> productosalquilados = new List<ProductoPublicado>();
 
 
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
-        await Leer();
-
+        await LeerProductos();
+        
     }
 
-    private async Task Leer()
-
+    private async Task LeerProductos()
     {
-
-        var respuesta = await http.Get<List<ProductoAlquilado>>("api/ProductoAlquilado");
-        
+        var respuesta = await http.Get<List<ProductoPublicado>>("api/Productos");
         if (!respuesta.Error)
         {
             productos = respuesta.Respuesta;
+
+         foreach (var item in productos)
+        {
+            if (item.Alquilado == true)
+            {
+                productosalquilados.Add(item);
+            }
+        }
+      
         }
 
+      
+
+      
     }
 
 
 }
-*@

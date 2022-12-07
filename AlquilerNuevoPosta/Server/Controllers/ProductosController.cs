@@ -18,20 +18,17 @@ namespace AlquilerNuevoPosta.Server.Controllers
             this.context = context;
         }
 
-       
 
-     
+
+
 
         [HttpGet]
         public async Task<ActionResult<List<ProductoPublicado>>> Get()
         {
             return await context.ProductosPublicados
 
-
                                          .Include(m => m.Estado)
-                                             .ToListAsync();
-
-          
+                                             .ToListAsync();         
         }
 
         [HttpGet("{id:int}")]
@@ -103,6 +100,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             produ.DetallesProducto = producto.DetallesProducto;
             produ.foto = producto.foto;
             produ.EstadoId = producto.EstadoId;
+            produ.Alquilado = producto.Alquilado;
 
             try
             {

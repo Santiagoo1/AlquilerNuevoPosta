@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alquiler.BD.Migrations
 {
     [DbContext(typeof(BdContext))]
-    [Migration("20221201155825_tablas")]
+    [Migration("20221206234335_tablas")]
     partial class tablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,43 +150,6 @@ namespace Alquiler.BD.Migrations
                     b.ToTable("Personas");
                 });
 
-            modelBuilder.Entity("Alquiler.BD.Data.Entidades.ProductoAlquilado", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DetallesProducto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EstadoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NombreProducto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PrecioProducto")
-                        .HasColumnType("int");
-
-                    b.Property<string>("foto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.HasIndex("EstadoId");
-
-                    b.ToTable("ProductosAlquilados");
-                });
-
             modelBuilder.Entity("Alquiler.BD.Data.Entidades.ProductoPublicado", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +157,9 @@ namespace Alquiler.BD.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Alquilado")
+                        .HasColumnType("bit");
 
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
@@ -251,25 +217,6 @@ namespace Alquiler.BD.Migrations
                     b.HasOne("Alquiler.BD.Data.Entidades.TipoDocumento", null)
                         .WithMany("Personas")
                         .HasForeignKey("TipoDocumentoId");
-                });
-
-            modelBuilder.Entity("Alquiler.BD.Data.Entidades.ProductoAlquilado", b =>
-                {
-                    b.HasOne("Alquiler.BD.Data.Entidades.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Alquiler.BD.Data.Entidades.Estado", "Estado")
-                        .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-
-                    b.Navigation("Estado");
                 });
 
             modelBuilder.Entity("Alquiler.BD.Data.Entidades.ProductoPublicado", b =>
