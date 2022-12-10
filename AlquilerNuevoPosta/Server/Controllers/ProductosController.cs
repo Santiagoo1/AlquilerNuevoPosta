@@ -28,6 +28,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             return await context.ProductosPublicados
 
                                          .Include(m => m.Estado)
+                                          .Include(m => m.Categoria)
                                              .ToListAsync();         
         }
 
@@ -38,6 +39,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
                                          .Where(e => e.Id == id)
                                          
                                          .Include(m => m.Estado)
+                                           .Include(m => m.Categoria)
                                          .FirstOrDefaultAsync();
 
             if (venta == null)
@@ -100,6 +102,7 @@ namespace AlquilerNuevoPosta.Server.Controllers
             produ.DetallesProducto = producto.DetallesProducto;
             produ.foto = producto.foto;
             produ.EstadoId = producto.EstadoId;
+            produ.CategoriaId = producto.CategoriaId;
             produ.Alquilado = producto.Alquilado;
 
             try
