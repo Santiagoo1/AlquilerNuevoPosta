@@ -65,7 +65,7 @@
             </p>
             <div class="card-footer">
                   <div class="botonalquiler">
-                <button type="submit" onclick="@PutAlquilado(producto)" class="btn btn-primary" >Alquilar</button>
+                <button type="submit" @onclick="() => PutAlquilado(producto)" class="btn btn-primary" >Alquilar</button>
                  </div>
 
             </div>
@@ -116,7 +116,7 @@
 
     }
 
-    public async Task  PutAlquilado(ProductoPublicado productoactual)
+    public async void  PutAlquilado(ProductoPublicado productoactual)
     {
         productoactual.Alquilado = true;
 
@@ -125,8 +125,8 @@
         {
             var body = respuesta.HttpResponseMessage;
         }
+        navigationManager.NavigateTo("/Productos2");
 
-        
     }
 
 }
