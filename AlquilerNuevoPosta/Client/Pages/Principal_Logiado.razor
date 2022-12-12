@@ -3,6 +3,14 @@
 @using Alquiler.BD.Data.Entidades
 @using AlquilerNuevoPosta.Client.Servicios
 @inject IHttpService http
+@*@inject HttpClient*@
+@using System.Text.Json
+
+
+
+
+
+
 
 <html lang="en">
 
@@ -371,6 +379,15 @@
 
             <div class="lupa">
             <span>&#127859</span>
+                <button type="button" class="btn btn-primary mr-sm-2 mb-2"
+                @onclick="Buscar">Buscar</button>
+
+                <AlquilerNuevoPosta.Client.Pages.Productos.Paginacion PaginasTotales="PaginasTotales" PaginaActual="PaginaActual" PaginaSeleccionada="PaginaSeleccionada">
+
+
+
+                </AlquilerNuevoPosta.Client.Pages.Productos.Paginacion>
+                
             </div>
             <div class="caja-buscador">
 
@@ -380,7 +397,7 @@
 
 
             </section>
-            <input class="buscador" type="text" name="" placeholder="Buscar producto">
+       @* <input class="buscador" type="text" @bind="NombrePersonaBuscador" placeholder="Buscar producto">*@
 
             <br />
           
@@ -393,56 +410,74 @@
 
     <div class=" buscados">
 
-        <p> <b>Productos mas buscados</b></p>
+        <p> <b>Ultimos Productos agregados</b></p>
 
 
     </div>
 
-    <div class=" alquilados">
+  
 
-       <p><b>Productos mas alquilados</b></p>
-
-
-    </div>
-
-
-
-    <div class="imagen">
-    <img class="imagen1" src="https://media.istockphoto.com/photos/portable-electric-generator-picture-id182192586?k=20&m=182192586&s=612x612&w=0&h=9li_tEesZGHBUJenRkJEK-G5wRQk8_SCbjg7xTZ3KfI=" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen2" src="https://media.istockphoto.com/photos/jackhammer-picture-id179658944?k=20&m=179658944&s=612x612&w=0&h=F46yqhwXZsDUPApozBq64HcMwU2Gk8DeAjBWsk3YrdU=" />
-    </div>
-
-
-    <div class="imagen">
-    <img class="imagen3" src="https://arcencohogar.vtexassets.com/arquivos/ids/296136-500-auto?v=637665756194070000&width=500&height=auto&aspect=true" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen4" src="https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_3b324cb695a947bbbe967883917456dc.jpg" />
-    </div>
-
-    <div class="imagen">
-    <img class="imagen5" src="https://media.istockphoto.com/photos/yellow-cordless-electronic-screwdriver-drill-hand-tool-isolated-white-picture-id1169548847?k=20&m=1169548847&s=612x612&w=0&h=KxQi66ngRoVejaQrOrZ_9BzDBnLomlkwF7tO9HFDFx0=" />
-    </div>
-
-   <div class="imagen">
-    <img class="imagen6" src="https://pintureriasagitario.com.ar/wp-content/uploads/2020/08/CSL1500.jpg" />
-    </div>
-
-    <div class="imagen">
-
-        <img class="imagen7" src="https://autorentbariloche.com.ar/wp-content/uploads/chevrolet_onix.png" />     
-
-    </div>
+    
 
 
 
 </header>
 
+ 
+    @if (productos == null)
+    {
+        <tr>Cargando......</tr>
+    }
+    else if (productos.Count == 0)
+    {
+        <tr>No existen datos</tr>
+    }
+    else
+    {
+        @foreach (var item in productos)
+        {
+            <div class="cardmove">
+                <div class="card">
+                    <div class="producto">
+                        <div class="foto">
+                            <img class="imagenproducto" src="@item.foto" />
+                        </div>
+                        <div class=" card-body">
+                            <h5 class="card-title mb-3">
+                                <b>@item.NombreProducto</b>
+                            </h5>
+
+                            <p class="card-text">
+                                <b>Precio:$@item.PrecioProducto.ToString()</b>
+                                <br />
+                                <b> Detalle:@item.DetallesProducto</b>
+                                <br />
+                                <b> Estado:@item.Estado.Estados</b>
+
+                            </p>
+                            <div class="card-footer">
+                                <div class="botonalquiler">
+                                    <a class="btn btn-primary"
+                                       href="Alquilar/@item.Id">
+                                        Ir a alquiler
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
 </body>
+
+
+
+
 
 
 
@@ -459,7 +494,7 @@
 
 @code {
 
-   
+
 
     public Categoria categoria = new Categoria();
 
@@ -471,7 +506,76 @@
     protected override async Task OnParametersSetAsync()
     {
 
-       var respuesta = await http.GetProductos<List<ProductoPublicado>>($"api/Productos/{CategoriaUrl}");
+        var respuesta = await http.GetProductos<List<ProductoPublicado>>($"api/Productos/{CategoriaUrl}");
 
     }
+
+
+
+    List<ProductoPublicado> productos;
+
+    List<Estado> Estados;
+
+
+    private int PaginaActual = 1;
+    private int PaginasTotales;
+    private string NombreProductoBuscador = string.Empty;
+
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+        await Leer();
+
+    }
+
+    private async Task Leer()
+
+    {
+
+        var respuesta = await http.Get<List<ProductoPublicado>>("api/Productos");
+
+        if (!respuesta.Error)
+        {
+            productos = respuesta.Respuesta;
+        }
+
+    }
+
+    private void PaginaSeleccionada()
+    {
+        
+    }
+
+    private async Task Buscar()
+    {
+        PaginaActual = 1;
+        //await CargarProducto
+    }
+
+
+
+
+    async Task CargarProducto()
+    {
+        //var httpResponse = await http.GetAsync("api/Productos");
+        //if (httpResponse.IsSuccessStatusCode)
+        //{
+        //    PaginasTotales = int.Parse(httpResponse.Headers.GetValues("totalPaginas").FirstOrDefault());
+
+        //    var responseString = await httpResponse.Content.ReadAsStringAsync();
+        //    productos = JsonSerializer.Deserialize<List<ProductoPublicado>>(responseString,
+        //        new JsonSerializerOptions() {PropertyNameCaseInsensitive = true });
+        //}else
+        //{
+        //    Console.WriteLine("error");
+        //}
+
+    }
+
+   
+    
 }

@@ -4,10 +4,14 @@ using AlquilerNuevoPosta.Client.Pages;
 using System.Text;
 using Alquiler.BD;
 using Microsoft.EntityFrameworkCore;
+using AlquilerNuevoPosta.Shared.Models;
+using System.Net.Http;
+
+
 
 namespace AlquilerNuevoPosta.Client.Servicios
 {
-    public class HttpService : IHttpService 
+    public class HttpService : IHttpService
     {
         private readonly HttpClient http;
 
@@ -136,5 +140,4 @@ namespace AlquilerNuevoPosta.Client.Servicios
 
 
     }
-
 }

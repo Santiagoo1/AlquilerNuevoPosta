@@ -3,6 +3,8 @@ using Alquiler.BD;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AlquilerNuevoPosta.Client.Servicios;
+using AlquilerNuevoPosta.Shared.Models;
+using AlquilerNuevoPosta.Server.Helpers;
 
 namespace AlquilerNuevoPosta.Server.Controllers
 {
@@ -23,10 +25,12 @@ namespace AlquilerNuevoPosta.Server.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductoPublicado>>> Get()
+        public async Task<ActionResult<List<ProductoPublicado>>> Get([FromQuery]Paginacion paginacion)
         {
-            return await context.ProductosPublicados
-
+            var queryable = context.ProductosPublicados.AsQueryable();
+            await HttpContext.InsertarParametrosPaginacionEnRespuesta(queryable, paginacion.CantidadAMostrar);
+            return await queryable.Paginar(paginacion)
+                //return await context.ProductosPublicados
                                          .Include(m => m.Estado)
                                           .Include(m => m.Categoria)
                                              .ToListAsync();         
