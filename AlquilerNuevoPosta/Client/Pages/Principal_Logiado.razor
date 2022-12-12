@@ -510,7 +510,7 @@
 
     }
 
-
+    //a
 
     List<ProductoPublicado> productos;
 
@@ -561,18 +561,18 @@
 
     async Task CargarProducto()
     {
-        //var httpResponse = await http.GetSync("api/Productos");
-        //if (httpResponse.IsSuccessStatusCode)
-        //{
-        //    PaginasTotales = int.Parse(httpResponse.Headers.GetValues("totalPaginas").FirstOrDefault());
+        var httpResponse = await http.GetSync("api/Productos");
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            PaginasTotales = int.Parse(httpResponse.Headers.GetValues("totalPaginas").FirstOrDefault());
 
-        //    var responseString = await httpResponse.Content.ReadAsStringAsync();
-        //    productos = JsonSerializer.Deserialize<List<ProductoPublicado>>(responseString,
-        //        new JsonSerializerOptions() {PropertyNameCaseInsensitive = true });
-        //}else
-        //{
-        //    Console.WriteLine("error");
-        //}
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            productos = JsonSerializer.Deserialize<List<ProductoPublicado>>(responseString,
+                new JsonSerializerOptions() {PropertyNameCaseInsensitive = true });
+        }else
+        {
+            Console.WriteLine("error");
+        }
 
     }
 
