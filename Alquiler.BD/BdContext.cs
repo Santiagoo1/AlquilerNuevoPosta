@@ -13,13 +13,13 @@ namespace Alquiler.BD
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            #region creacion de categoria
             modelBuilder.Entity<Categoria>().HasData(
                 new Categoria
-                { 
+                {
                     Id = 1,
-                    nombre="Electrodomestico",
-                    Url= "electrodomestico"
+                    nombre = "Electrodomestico",
+                    Url = "electrodomestico"
                 },
                 new Categoria
                 {
@@ -41,6 +41,37 @@ namespace Alquiler.BD
                 }
 
                 );
+            #endregion
+
+            #region creacion de estado
+            modelBuilder.Entity<Estado>().HasData(
+                 new Estado
+                {
+                    Id = 1,
+                    Estados = "En envio",
+               
+                },
+                new Estado
+                {
+                    Id = 2,
+                    Estados = "En prepatacion",
+              
+                },
+                new Categoria
+                {
+                    Id = 3,
+                    nombre = "En local",
+              
+                },
+                new Categoria
+                {
+                    Id = 4,
+                    nombre = "Entregado",
+               
+                }
+
+                );
+            #endregion
         }
 
         public BdContext(DbContextOptions options) : base(options)
@@ -50,7 +81,7 @@ namespace Alquiler.BD
 
         public DbSet<ProductoPublicado> ProductosPublicados { get; set; }
 
-        
+
 
         public DbSet<Direccion> Direcciones { get; set; }
 
@@ -59,7 +90,12 @@ namespace Alquiler.BD
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<Estado> Estados { get; set; }
+    }
+
+
+       
 
 
     }
-}
+
+

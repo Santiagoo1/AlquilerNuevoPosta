@@ -128,12 +128,7 @@
             <ValidationMessage For="@(()=> producto.DetallesProducto)" />
         </div>
 
-      @*<label>Foto</label>
-        <div>
 
-           <InputText class="form-control" @bind-Value="@foto.Fotos" />
-            <ValidationMessage For="@(()=> foto.Fotos)" />
-        </div>*@
 
 
          <label class="foto">Url_Foto</label>
@@ -148,7 +143,13 @@
                <label class="estado">estado</label>
         <div class="txt5">
 
-            <InputNumber class= "form-select" @bind-Value ="@producto.EstadoId" /> 
+             <InputSelect class= "form-select" @bind-Value ="@producto.EstadoId"> 
+            @foreach (var item in estados   )
+           {
+               <option value="@item.Id">@item.Estados</option>
+           }
+
+           </InputSelect>
                <ValidationMessage For="@(()=> producto.EstadoId)" />
                 
                               
@@ -158,9 +159,14 @@
                <label class="categoria">Categoria</label>
         <div class="txt6">
 
-            <InputNumber class= "form-select" @bind-Value ="@producto.CategoriaId" /> 
+             <InputSelect class= "form-select" @bind-Value ="@producto.CategoriaId"> 
+            @foreach (var item in categorias   )
+           {
+               <option value="@item.Id">@item.nombre</option>
+           }
+
+           </InputSelect>
                <ValidationMessage For="@(()=> producto.CategoriaId)" />
-                
                               
         </div>
 
@@ -175,30 +181,28 @@
 
 </EditForm>
 
-@*<EditForm Model="estado">
 
-           <label class="estado">Estado</label>
-        <div class="txt4">
-
-            <InputSelect @bind-Value="@producto.EstadoId" class="form-select" >
-                @foreach (var item in estados)
-            {
-                <option value="@producto.EstadoId"></option>
-            }
-
-            </InputSelect>
-                
-                              
-        </div>
-
-    </EditForm>*@
 
 @code {
-    List<Estado> estados;
+    
+     static List<Estado> estados = new List<Estado>
+    {
+        new Estado{ Id= 1,Estados= "En envio"},
+        new Estado{ Id= 2,Estados= "En Preparacion"},
+        new Estado{ Id= 3,Estados= "En local"},
+        new Estado{ Id= 4,Estados= "Entregado"}
+    };
+
+     static List<Categoria> categorias = new List<Categoria>
+    {
+        new  Categoria { Id= 1,nombre= "Electrodomestico"},
+        new Categoria { Id= 2,nombre= "Herramienta"},
+        new Categoria { Id= 3,nombre= "Tecnologia"},
+        new Categoria { Id= 4,nombre= "Juguete"}
+    };
+    
     [Parameter] public ProductoPublicado producto { get; set; }
     [Parameter] public Estado estado { get; set; }
-    //[Parameter] public Foto foto { get; set; }
-   // [Parameter] public Estado estado { get; set; }
     [Parameter] public EventCallback onValidSubmit { get; set; 
 }
     [Parameter] public EventCallback onCancel { get; set; }
