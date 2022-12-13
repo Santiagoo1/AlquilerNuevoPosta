@@ -133,6 +133,17 @@ namespace Alquiler.BD.Migrations
                     { 4, "juguete", "Juguetes" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Estados",
+                columns: new[] { "Id", "Estados" },
+                values: new object[,]
+                {
+                    { 1, "En envio" },
+                    { 2, "En prepatacion" },
+                    { 3, "En local" },
+                    { 4, "Entregado" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Personas_DireccionId",
                 table: "Personas",

@@ -57,16 +57,16 @@ namespace Alquiler.BD
                     Estados = "En prepatacion",
               
                 },
-                new Categoria
+                new Estado
                 {
                     Id = 3,
-                    nombre = "En local",
+                    Estados = "En local",
               
                 },
-                new Categoria
+                new Estado
                 {
                     Id = 4,
-                    nombre = "Entregado",
+                    Estados = "Entregado",
                
                 }
 
