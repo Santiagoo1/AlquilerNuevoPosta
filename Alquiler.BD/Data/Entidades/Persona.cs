@@ -35,6 +35,13 @@ namespace Alquiler.BD.Data.Entidades
 
 
 
+        public int TipoDocumentoId { get; set; }
+        public TipoDocumento TipoDocumento { get; set; }
+
+        public int DireccionId { get; set; }
+        public Direccion Direccion { get; set; }
+
+
 
     }
 }
