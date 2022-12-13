@@ -4,7 +4,44 @@
 @inject IHttpService http
 @inject NavigationManager navigationManager
 
+<style>
 
+    .imagenproducto{
+    
+        width: 300px;
+        position:relative;
+        left:50px;
+        top:200px;
+    }
+
+    .foto{
+    
+        width: 400px;
+        position: fixed;
+        left:500px;
+    }
+
+    .card{
+         width: 400px;
+        position: fixed;
+        left:1000px;
+        top: 300px;
+        height:200px;
+    
+    }
+
+    .card{
+    
+        font-size:20px;
+
+    }
+    .botonalquiler{
+    
+    width: 3000px;
+    
+    }
+
+</style>
 
 <html>
 
@@ -38,14 +75,14 @@
     <Confirmacion @ref="confirmacion"
               verCancelar="true"
               verOk="true"
-              textOk="Ok"
-              Titulo="Borrar especialidad"
+              textOk="Pagar"
+              Titulo="Pagar producto"
               onCancel="Cancelar"
-              onConfirm="Borrar">
+              onConfirm="Pagar">
               <div>
                   Está por pagar @producto.PrecioProducto para comprar @producto.NombreProducto
                   <br />
-                  ¿Está seguro que desea continuar?
+                  ¿Quiere continuar?
               </div>
 </Confirmacion>
 
@@ -112,7 +149,7 @@
         navigationManager.NavigateTo("/Logiado");
     }
 
-    private void Borrar()
+    private void Pagar()
     {
         PutAlquilado(producto);
         navigationManager.NavigateTo("/Productos2");

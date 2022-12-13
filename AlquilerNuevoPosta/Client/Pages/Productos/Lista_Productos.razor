@@ -252,7 +252,12 @@
     }
 
 
-
+    .botonborrar{
+    position: absolute;
+    bottom: 24px;
+    left: 150px;
+    
+    }
 
 
 
@@ -328,12 +333,19 @@
             </p>
 
               <div class="card-footer">
-                  <div class="botonalquiler">
+                  <div class="botoneditar">
                 <a class="btn btn-primary"
-                       href="Alquilar/@item.Id">
-                        Ir a alquiler
+                       href="Editar/@item.Id">
+                        Editar
                     </a>
                  </div>
+                   <div class="botonborrar">
+                <a class="btn btn-danger"
+                        @onclick="()=>Eliminar(item)">
+                        Eliminar
+                    </a>
+                 </div>
+
 
             </div>
         </div>
@@ -345,7 +357,19 @@
 
     }
     
-
+    <ConfirmacionBorrar @ref="confirmacion"
+              verCancelar="true"
+              verOk="true"
+              textOk="Ok"
+              Titulo="Borrar especialidad"
+              onCancel="Cancelar"
+              onConfirm="Borrar">
+              <div>
+                  Esta por borrar @productoborrar.NombreProducto
+                  <br />
+                  ¿Está seguro que desea continuar?
+              </div>
+</ConfirmacionBorrar>
   
 
 <body>
@@ -423,8 +447,9 @@
 
     List<Estado> Estados;
 
+    ConfirmacionBorrar confirmacion;
 
-
+    ProductoPublicado productoborrar;
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
@@ -445,9 +470,29 @@
 
     }
 
+       private void Eliminar(ProductoPublicado borrarproducto)
+    {
+        productoborrar = borrarproducto;
+        confirmacion.Ver();
+    }
 
 
+       private void Cancelar()
+    {
+        confirmacion.Ocultar();
+        productoborrar = null;
+    }
 
+        private async Task Borrar()
+    {
+        var respuesta = await http.Delete($"api/Productos/{productoborrar.Id}");
+        if(respuesta.Error)
+        {
+            var body = "Error";
+        }
+        Cancelar();
+        await Leer();
+    }
 
 
 }
