@@ -7,38 +7,96 @@
 
 <EditForm Model="persona" OnValidSubmit="onValidSubmit">
     <DataAnnotationsValidator />
+ 
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-        <label >Nombre</label>
+    
+        <br />
+        <br />
+        
+        <br />
+        <br />
+        
+        <br />
+        <br />
+
+
+    <label class="nombre"> Nombre </label>
         <div class="txt1">
 
             <InputText class="form-control" @bind-Value="@persona.Nombre" />
             <ValidationMessage For="@(()=> persona.Nombre)" />
         </div>
 
-        <label>Apellido </label>
+    <label class="apellido">Apellido </label>
         <div class="txt2">
 
             <InputText class="form-control" @bind-Value="@persona.Apellido" />
             <ValidationMessage For="@(()=> persona.Apellido)" />
         </div>
 
-   
 
-       <label >Contraseña</label>
-        <div class="txt4">
 
-            <InputText class= "form-control" @bind-Value ="@persona.Contraseña" /> 
-               <ValidationMessage For="@(()=> persona.Contraseña)" />
+     <label class="contraseña" >Contraseña</label>
+        <div class="txt3">
+
+        <InputText class="form-control col-sm-3" @bind-Value="@persona.Contraseña" type="password" />
+        <ValidationMessage For="@(()=> persona.Contraseña)" />
                
                               
         </div>
 
+           <label class="dni">Dni</label>
+        <div class="txt4">
+
+            <InputText class= "form-control" @bind-Value ="@persona.DNI" />
+        <ValidationMessage For="@(()=> persona.DNI)" />
+               
+                              
+        </div>
+
+    <label class="tipodocumento">Tipo Documento</label>
+     <div class="txt5">
+
+        <InputSelect class="form-select" @bind-Value="@persona.TipoDocumentoId">
+       
+        @foreach (var item in tipodocumentos   )
+           {
+        <option value="@item.Id">@item.NombreTipoDocumento</option>
+           }
+
+           </InputSelect>
+    <ValidationMessage For="@(()=> persona.TipoDocumentoId)" />
+            
+     </div>
+
+
+    <label class="direccion">Direccion</label>
+     <div class="txt6">
+
+        <InputSelect class="form-select" @bind-Value="@persona.DireccionId">
+       
+
+            @foreach (var item in direcciones   )
+           {
+               <option value="@item.Id">@item.Localidad - @item.Departamento - @item.Provincia</option>
+             
+           }
+
+           </InputSelect>
+    <ValidationMessage For="@(()=> persona.DireccionId)" />
+       
+
+
+     </div>
+
+    <label class="calleyaltura">  Calle y Altura</label>
+     <div class="txt7">
+
+        <InputText class="form-control" @bind-Value="@persona.CalleAltura" />
+        <ValidationMessage For="@(()=> persona.CalleAltura)" />
+
+
+     </div>
 
 
 
@@ -65,10 +123,80 @@
 
 
 @code {
+    static List<TipoDocumento> tipodocumentos = new List<TipoDocumento>
+    {
+             new TipoDocumento{ Id = 1,NombreTipoDocumento = "DNU"},
+             new TipoDocumento{ Id = 2,NombreTipoDocumento = "PASAPORTE NACIONAL"},
+             new TipoDocumento{ Id = 3,NombreTipoDocumento = "DNI"},
+             new TipoDocumento{ Id = 4,NombreTipoDocumento = "TARJETA DE RESIDENCIA"},
+             new TipoDocumento{ Id = 5,NombreTipoDocumento = "PASAPORTE EXTRANJERO"}
+                
+    };
+
+
+
+    static List<Direccion> direcciones = new List<Direccion>
+    {
+           new Direccion{ Id = 1,  Localidad = "Cordoba ",                  Departamento = " Capital ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 2,  Localidad = " Rio Cuarto",               Departamento = " Rio Cuarto ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 3,  Localidad = "Almafuerte",                Departamento = " Rio Tercero ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 4,  Localidad = "Oliva",                     Departamento = " Rio Tercero ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 5,  Localidad = "Rio Tercero",               Departamento = " Rio Tercero ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 6,  Localidad = "Pilar",                     Departamento = " Rio Segundo ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 7,  Localidad = "Oncativo",                  Departamento = " Rio Segundo ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 8,  Localidad = "Rio Segundo",               Departamento = " Rio Segundo ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 9,  Localidad = "La Quinta",                 Departamento = " Rio Primero ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 10, Localidad = "Villa Tulumba",             Departamento = " Tulumba ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 11, Localidad = "San Francisco Del Chañar",  Departamento = " Sobremonte ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 12, Localidad = "Cerro Colorado",            Departamento = " Rio Seco ",           Provincia = " Cordoba "},
+           new Direccion{ Id = 13, Localidad = "San Marcos Sierras",        Departamento = " Cruz del Eje ",       Provincia = " Cordoba "},
+           new Direccion{ Id = 14, Localidad = "Parroquia",                 Departamento = " Ischilín ",           Provincia = " Cordoba "},
+           new Direccion{ Id = 15, Localidad = "Las Peñas",                 Departamento = " Totoral ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 16, Localidad = "Arroyito",                  Departamento = " San Justo ",          Provincia = " Cordoba "},
+           new Direccion{ Id = 17, Localidad = "San Carlos Minas",          Departamento = " Minas ",              Provincia = " Cordoba "},
+           new Direccion{ Id = 18, Localidad = "Villa Carlos Paz",          Departamento = " Punilla ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 19, Localidad = "Cosquin",                   Departamento = " Punilla ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 20, Localidad = "La Falda",                  Departamento = " Punilla ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 21, Localidad = "Bialet Massé",              Departamento = " Punilla ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 22, Localidad = "Huerta Grande",             Departamento = " Punilla ",            Provincia = " Cordoba "},
+           new Direccion{ Id = 23, Localidad = "Jesus Maria",               Departamento = " Colon ",              Provincia = " Cordoba "},
+           new Direccion{ Id = 24, Localidad = "La Calera",                 Departamento = " Colon ",              Provincia = " Cordoba "},
+           new Direccion{ Id = 25, Localidad = "Unquillo",                  Departamento = " Colon ",              Provincia = " Cordoba "},
+           new Direccion{ Id = 26, Localidad = "Salsacate",                 Departamento = " Pocho ",              Provincia = " Cordoba "},
+           new Direccion{ Id = 27, Localidad = "Mina Clavero",              Departamento = " San Alberto ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 28, Localidad = " Villa Cura Brochero",      Departamento = " San Alberto ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 29, Localidad = "San Vicente",               Departamento = " San Alberto ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 30, Localidad = "Alta Gracia",               Departamento = " Santa Maria ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 31, Localidad = "Anisacate",                 Departamento = " Santa Maria ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 32, Localidad = "Las Quintas",               Departamento = " Santa Maria ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 33, Localidad = "Villa Dolores",             Departamento = " San Javier ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 34, Localidad = "Villa De Las Rosas",        Departamento = " San Javier ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 35, Localidad = "La Paz",                    Departamento = " San Javier ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 36, Localidad = "Santa Rosa De Calamuchita", Departamento = " Calamuchita ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 37, Localidad = "Embalse",                   Departamento = " Calamuchita ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 38, Localidad = "Villa General Belgrano",    Departamento = " Calamuchita ",        Provincia = " Cordoba "},
+           new Direccion{ Id = 39, Localidad = "Villa Maria",               Departamento = " San Martin ",         Provincia = " Cordoba "},
+           new Direccion{ Id = 40, Localidad = "Arias",                     Departamento = " Marcos Juarez ",      Provincia = " Cordoba "},
+           new Direccion{ Id = 41, Localidad = " Marcos Juarez",            Departamento = " Marcos Juarez ",      Provincia = " Cordoba "},
+           new Direccion{ Id = 42, Localidad = "La Carlota",                Departamento = " Juarez Celman ",      Provincia = " Cordoba "},
+           new Direccion{ Id = 43, Localidad = "General Cabrera",           Departamento = " Juarez Celman ",      Provincia = " Cordoba "},
+           new Direccion{ Id = 44, Localidad = "Laboulaye",                 Departamento = " Roque Saenz Peña ",   Provincia = " Cordoba "},
+           new Direccion{ Id = 45, Localidad = "General Levalle",           Departamento = " Roque Saenz Peña ",   Provincia = " Cordoba "},
+           new Direccion{ Id = 46, Localidad = "Serrano",                   Departamento = " Roque Saenz Peña ",   Provincia = " Cordoba "},
+           new Direccion{ Id = 47, Localidad = "Rosales",                   Departamento = " Roque Saenz Peña ",   Provincia = " Cordoba "},
+           new Direccion{ Id = 48, Localidad = "Villa Valeria",             Departamento = " General Roca ",       Provincia = " Cordoba "}
+
+
+
+
+
+    };
+
+
      
     [Parameter] public Persona persona { get; set; }
-    [Parameter] public TipoDocumento tipodocumentos { get; set; }
-     [Parameter] public Direccion direcciones { get; set; }
+  //  [Parameter] public TipoDocumento tipodocumentos { get; set; }
+    // [Parameter] public Direccion direcciones { get; set; }
 
    // [Parameter] public Cargo cargo { get; set; }
    // [Parameter] public Encargado encargado { get; set; }

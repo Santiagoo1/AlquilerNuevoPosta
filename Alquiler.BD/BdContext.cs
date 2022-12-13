@@ -104,7 +104,7 @@ namespace Alquiler.BD
 
                  new TipoDocumento
                  {
-                     Id = 4,
+                     Id = 5,
                      NombreTipoDocumento = "PASAPORTE EXTRANJERO",
 
                  }
@@ -139,7 +139,7 @@ namespace Alquiler.BD
 
                    new Direccion
                    {
-                       Id = 3,
+                       Id = 4,
                        Localidad = "Oliva",
                        Departamento = " Rio Tercero ",
                        Provincia = " Cordoba ",
@@ -147,14 +147,14 @@ namespace Alquiler.BD
 
                       new Direccion
                       {
-                          Id = 3,
+                          Id = 5,
                           Localidad = "Rio Tercero",
                           Departamento = " Rio Tercero ",
                           Provincia = " Cordoba ",
                       },
                 new Direccion
                 {
-                    Id = 4,
+                    Id = 6,
                     Localidad = "Pilar",
                     Departamento = " Rio Segundo ",
                     Provincia = " Cordoba ",
@@ -162,7 +162,7 @@ namespace Alquiler.BD
 
                   new Direccion
                   {
-                      Id = 4,
+                      Id = 7,
                       Localidad = "Oncativo",
                       Departamento = " Rio Segundo ",
                       Provincia = " Cordoba ",
@@ -170,7 +170,7 @@ namespace Alquiler.BD
 
                     new Direccion
                     {
-                        Id = 4,
+                        Id = 8,
                         Localidad = "Rio Segundo",
                         Departamento = " Rio Segundo ",
                         Provincia = " Cordoba ",
@@ -178,7 +178,7 @@ namespace Alquiler.BD
 
                    new Direccion
                    {
-                       Id = 4,
+                       Id = 9,
                        Localidad = "La Quinta",
                        Departamento = " Rio Primero ",
                        Provincia = " Cordoba ",
@@ -186,7 +186,7 @@ namespace Alquiler.BD
 
                       new Direccion
                       {
-                          Id = 4,
+                          Id = 10,
                           Localidad = "Villa Tulumba",
                           Departamento = " Tulumba ",
                           Provincia = " Cordoba ",
@@ -194,7 +194,7 @@ namespace Alquiler.BD
 
                          new Direccion
                          {
-                             Id = 4,
+                             Id = 11,
                              Localidad = "San Francisco Del Chañar",
                              Departamento = " Sobremonte ",
                              Provincia = " Cordoba ",
@@ -202,7 +202,7 @@ namespace Alquiler.BD
 
                             new Direccion
                             {
-                                Id = 4,
+                                Id = 12,
                                 Localidad = "Cerro Colorado",
                                 Departamento = " Rio Seco ",
                                 Provincia = " Cordoba ",
@@ -211,7 +211,7 @@ namespace Alquiler.BD
 
                                new Direccion
                                {
-                                   Id = 4,
+                                   Id = 13,
                                    Localidad = "San Marcos Sierras",
                                    Departamento = " Cruz del Eje ",
                                    Provincia = " Cordoba ",
@@ -219,7 +219,7 @@ namespace Alquiler.BD
 
                                   new Direccion
                                   {
-                                      Id = 4,
+                                      Id = 14,
                                       Localidad = "Parroquia",
                                       Departamento = " Ischilín ",
                                       Provincia = " Cordoba ",
@@ -227,7 +227,7 @@ namespace Alquiler.BD
 
                                      new Direccion
                                      {
-                                         Id = 4,
+                                         Id = 15,
                                          Localidad = "Las Peñas",
                                          Departamento = " Totoral ",
                                          Provincia = " Cordoba ",
@@ -236,7 +236,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 16,
                                             Localidad = "Arroyito",
                                             Departamento = " San Justo ",
                                             Provincia = " Cordoba ",
@@ -245,7 +245,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 17,
                                             Localidad = "San Carlos Minas",
                                             Departamento = " Minas ",
                                             Provincia = " Cordoba ",
@@ -254,7 +254,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 18,
                                             Localidad = "Villa Carlos Paz",
                                             Departamento = " Punilla ",
                                             Provincia = " Cordoba ",
@@ -263,7 +263,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 19,
                                               Localidad = "Cosquin",
                                               Departamento = " Punilla ",
                                               Provincia = " Cordoba ",
@@ -271,7 +271,7 @@ namespace Alquiler.BD
 
                                             new Direccion
                                             {
-                                                Id = 4,
+                                                Id = 20,
                                                 Localidad = "La Falda",
                                                 Departamento = " Punilla ",
                                                 Provincia = " Cordoba ",
@@ -279,7 +279,7 @@ namespace Alquiler.BD
 
                                               new Direccion
                                               {
-                                                  Id = 4,
+                                                  Id = 21,
                                                   Localidad = "Bialet Massé",
                                                   Departamento = " Punilla ",
                                                   Provincia = " Cordoba ",
@@ -287,7 +287,7 @@ namespace Alquiler.BD
 
                                                 new Direccion
                                                 {
-                                                    Id = 4,
+                                                    Id = 22,
                                                     Localidad = "Huerta Grande",
                                                     Departamento = " Punilla ",
                                                     Provincia = " Cordoba ",
@@ -296,7 +296,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 23,
                                             Localidad = "Jesus Maria",
                                             Departamento = " Colon ",
                                             Provincia = " Cordoba ",
@@ -304,7 +304,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 24,
                                               Localidad = "La Calera",
                                               Departamento = " Colon ",
                                               Provincia = " Cordoba ",
@@ -312,7 +312,7 @@ namespace Alquiler.BD
 
                                             new Direccion
                                             {
-                                                Id = 4,
+                                                Id = 25,
                                                 Localidad = "Unquillo",
                                                 Departamento = " Colon ",
                                                 Provincia = " Cordoba ",
@@ -320,7 +320,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 26,
                                             Localidad = "Salsacate",
                                             Departamento = " Pocho ",
                                             Provincia = " Cordoba ",
@@ -329,7 +329,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 27,
                                             Localidad = "Mina Clavero",
                                             Departamento = " San Alberto ",
                                             Provincia = " Cordoba ",
@@ -338,7 +338,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 28,
                                             Localidad = " Villa Cura Brochero",
                                             Departamento = " San Alberto ",
                                             Provincia = " Cordoba ",
@@ -347,7 +347,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 29,
                                             Localidad = "San Vicente",
                                             Departamento = " San Alberto ",
                                             Provincia = " Cordoba ",
@@ -356,7 +356,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 30,
                                             Localidad = "Alta Gracia",
                                             Departamento = " Santa Maria ",
                                             Provincia = " Cordoba ",
@@ -364,7 +364,7 @@ namespace Alquiler.BD
 
                                            new Direccion
                                            {
-                                               Id = 4,
+                                               Id = 31,
                                                Localidad = "Anisacate",
                                                Departamento = " Santa Maria ",
                                                Provincia = " Cordoba ",
@@ -373,7 +373,7 @@ namespace Alquiler.BD
 
                                               new Direccion
                                               {
-                                                  Id = 4,
+                                                  Id = 32,
                                                   Localidad = "Las Quintas",
                                                   Departamento = " Santa Maria ",
                                                   Provincia = " Cordoba ",
@@ -382,7 +382,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 33,
                                             Localidad = "Villa Dolores",
                                             Departamento = " San Javier ",
                                             Provincia = " Cordoba ",
@@ -391,7 +391,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 34,
                                               Localidad = "Villa De Las Rosas",
                                               Departamento = " San Javier ",
                                               Provincia = " Cordoba ",
@@ -399,7 +399,7 @@ namespace Alquiler.BD
 
                                             new Direccion
                                             {
-                                                Id = 4,
+                                                Id = 35,
                                                 Localidad = "La Paz",
                                                 Departamento = " San Javier ",
                                                 Provincia = " Cordoba ",
@@ -407,7 +407,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 36,
                                             Localidad = "Santa Rosa De Calamuchita",
                                             Departamento = " Calamuchita ",
                                             Provincia = " Cordoba ",
@@ -416,7 +416,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 37,
                                               Localidad = "Embalse",
                                               Departamento = " Calamuchita ",
                                               Provincia = " Cordoba ",
@@ -425,7 +425,7 @@ namespace Alquiler.BD
                                           
                                           new Direccion
                                           {
-                                          Id = 4,
+                                          Id = 38,
                                           Localidad = "Villa General Belgrano",
                                           Departamento = " Calamuchita ",
                                           Provincia = " Cordoba ",
@@ -436,7 +436,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 39,
                                             Localidad = "Villa Maria",
                                             Departamento = " San Martin ",
                                             Provincia = " Cordoba ",
@@ -446,7 +446,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 40,
                                             Localidad = "Arias",
                                             Departamento = " Marcos Juarez ",
                                             Provincia = " Cordoba ",
@@ -454,7 +454,7 @@ namespace Alquiler.BD
 
                                          new Direccion
                                          {
-                                             Id = 4,
+                                             Id = 41,
                                              Localidad = " Marcos Juarez",
                                              Departamento = " Marcos Juarez ",
                                              Provincia = " Cordoba ",
@@ -463,7 +463,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 42,
                                             Localidad = "La Carlota",
                                             Departamento = " Juarez Celman ",
                                             Provincia = " Cordoba ",
@@ -472,7 +472,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 43,
                                               Localidad = "General Cabrera",
                                               Departamento = " Juarez Celman ",
                                               Provincia = " Cordoba ",
@@ -480,7 +480,7 @@ namespace Alquiler.BD
 
                                         new Direccion
                                         {
-                                            Id = 4,
+                                            Id = 44,
                                             Localidad = "Laboulaye",
                                             Departamento = " Roque Saenz Peña ",
                                             Provincia = " Cordoba ",
@@ -488,7 +488,7 @@ namespace Alquiler.BD
 
                                           new Direccion
                                           {
-                                              Id = 4,
+                                              Id = 45,
                                               Localidad = "General Levalle",
                                               Departamento = " Roque Saenz Peña ",
                                               Provincia = " Cordoba ",
@@ -496,7 +496,7 @@ namespace Alquiler.BD
 
                                             new Direccion
                                             {
-                                                Id = 4,
+                                                Id = 46,
                                                 Localidad = "Serrano",
                                                 Departamento = " Roque Saenz Peña ",
                                                 Provincia = " Cordoba ",
@@ -504,7 +504,7 @@ namespace Alquiler.BD
 
                                               new Direccion
                                               {
-                                                  Id = 4,
+                                                  Id = 47,
                                                   Localidad = "Rosales",
                                                   Departamento = " Roque Saenz Peña ",
                                                   Provincia = " Cordoba ",
@@ -512,7 +512,7 @@ namespace Alquiler.BD
 
                                                  new Direccion
                                                  {
-                                                     Id = 4,
+                                                     Id = 48,
                                                      Localidad = "Villa Valeria",
                                                      Departamento = " General Roca ",
                                                      Provincia = " Cordoba ",

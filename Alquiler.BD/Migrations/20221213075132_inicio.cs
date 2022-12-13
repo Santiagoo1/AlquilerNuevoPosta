@@ -4,7 +4,7 @@
 
 namespace Alquiler.BD.Migrations
 {
-    public partial class Inicio : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,7 @@ namespace Alquiler.BD.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreTipoDocumento = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    NombreTipoDocumento = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,8 +104,9 @@ namespace Alquiler.BD.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Contraseña = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    DireccionId = table.Column<int>(type: "int", nullable: true),
-                    TipoDocumentoId = table.Column<int>(type: "int", nullable: true)
+                    CalleAltura = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TipoDocumentoId = table.Column<int>(type: "int", nullable: false),
+                    DireccionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,12 +115,14 @@ namespace Alquiler.BD.Migrations
                         name: "FK_Personas_Direcciones_DireccionId",
                         column: x => x.DireccionId,
                         principalTable: "Direcciones",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Personas_TipoDocumentos_TipoDocumentoId",
                         column: x => x.TipoDocumentoId,
                         principalTable: "TipoDocumentos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -134,14 +137,88 @@ namespace Alquiler.BD.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Direcciones",
+                columns: new[] { "Id", "Departamento", "Localidad", "Provincia" },
+                values: new object[,]
+                {
+                    { 1, " Capital ", "Cordoba ", " Cordoba " },
+                    { 2, " Rio Cuarto ", " Rio Cuarto", " Cordoba " },
+                    { 3, " Rio Tercero ", "Almafuerte", " Cordoba " },
+                    { 4, " Rio Tercero ", "Oliva", " Cordoba " },
+                    { 5, " Rio Tercero ", "Rio Tercero", " Cordoba " },
+                    { 6, " Rio Segundo ", "Pilar", " Cordoba " },
+                    { 7, " Rio Segundo ", "Oncativo", " Cordoba " },
+                    { 8, " Rio Segundo ", "Rio Segundo", " Cordoba " },
+                    { 9, " Rio Primero ", "La Quinta", " Cordoba " },
+                    { 10, " Tulumba ", "Villa Tulumba", " Cordoba " },
+                    { 11, " Sobremonte ", "San Francisco Del Chañar", " Cordoba " },
+                    { 12, " Rio Seco ", "Cerro Colorado", " Cordoba " },
+                    { 13, " Cruz del Eje ", "San Marcos Sierras", " Cordoba " },
+                    { 14, " Ischilín ", "Parroquia", " Cordoba " },
+                    { 15, " Totoral ", "Las Peñas", " Cordoba " },
+                    { 16, " San Justo ", "Arroyito", " Cordoba " },
+                    { 17, " Minas ", "San Carlos Minas", " Cordoba " },
+                    { 18, " Punilla ", "Villa Carlos Paz", " Cordoba " },
+                    { 19, " Punilla ", "Cosquin", " Cordoba " },
+                    { 20, " Punilla ", "La Falda", " Cordoba " },
+                    { 21, " Punilla ", "Bialet Massé", " Cordoba " },
+                    { 22, " Punilla ", "Huerta Grande", " Cordoba " },
+                    { 23, " Colon ", "Jesus Maria", " Cordoba " },
+                    { 24, " Colon ", "La Calera", " Cordoba " },
+                    { 25, " Colon ", "Unquillo", " Cordoba " },
+                    { 26, " Pocho ", "Salsacate", " Cordoba " },
+                    { 27, " San Alberto ", "Mina Clavero", " Cordoba " },
+                    { 28, " San Alberto ", " Villa Cura Brochero", " Cordoba " },
+                    { 29, " San Alberto ", "San Vicente", " Cordoba " },
+                    { 30, " Santa Maria ", "Alta Gracia", " Cordoba " },
+                    { 31, " Santa Maria ", "Anisacate", " Cordoba " },
+                    { 32, " Santa Maria ", "Las Quintas", " Cordoba " },
+                    { 33, " San Javier ", "Villa Dolores", " Cordoba " },
+                    { 34, " San Javier ", "Villa De Las Rosas", " Cordoba " },
+                    { 35, " San Javier ", "La Paz", " Cordoba " },
+                    { 36, " Calamuchita ", "Santa Rosa De Calamuchita", " Cordoba " },
+                    { 37, " Calamuchita ", "Embalse", " Cordoba " },
+                    { 38, " Calamuchita ", "Villa General Belgrano", " Cordoba " }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Direcciones",
+                columns: new[] { "Id", "Departamento", "Localidad", "Provincia" },
+                values: new object[,]
+                {
+                    { 39, " San Martin ", "Villa Maria", " Cordoba " },
+                    { 40, " Marcos Juarez ", "Arias", " Cordoba " },
+                    { 41, " Marcos Juarez ", " Marcos Juarez", " Cordoba " },
+                    { 42, " Juarez Celman ", "La Carlota", " Cordoba " },
+                    { 43, " Juarez Celman ", "General Cabrera", " Cordoba " },
+                    { 44, " Roque Saenz Peña ", "Laboulaye", " Cordoba " },
+                    { 45, " Roque Saenz Peña ", "General Levalle", " Cordoba " },
+                    { 46, " Roque Saenz Peña ", "Serrano", " Cordoba " },
+                    { 47, " Roque Saenz Peña ", "Rosales", " Cordoba " },
+                    { 48, " General Roca ", "Villa Valeria", " Cordoba " }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Estados",
                 columns: new[] { "Id", "Estados" },
                 values: new object[,]
                 {
                     { 1, "En envio" },
-                    { 2, "En prepatacion" },
+                    { 2, "En preparacion" },
                     { 3, "En local" },
                     { 4, "Entregado" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TipoDocumentos",
+                columns: new[] { "Id", "NombreTipoDocumento" },
+                values: new object[,]
+                {
+                    { 1, "DNU" },
+                    { 2, "PASAPORTE NACIONAL" },
+                    { 3, "DNI" },
+                    { 4, "TARJETA DE RESIDENCIA" },
+                    { 5, "PASAPORTE EXTRANJERO" }
                 });
 
             migrationBuilder.CreateIndex(
