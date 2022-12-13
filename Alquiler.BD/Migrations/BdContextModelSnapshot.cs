@@ -103,6 +103,28 @@ namespace Alquiler.BD.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estados");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Estados = "En envio"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Estados = "En prepatacion"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Estados = "En local"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Estados = "Entregado"
+                        });
                 });
 
             modelBuilder.Entity("Alquiler.BD.Data.Entidades.Persona", b =>
