@@ -3,7 +3,7 @@
 @using Alquiler.BD.Data.Entidades
 @using AlquilerNuevoPosta.Client.Servicios
 @inject IHttpService http
-@*@inject HttpClient*@
+@*@inject HttpClient http*@
 @using System.Text.Json
 
 
@@ -561,18 +561,18 @@
 
     async Task CargarProducto()
     {
-        var httpResponse = await http.GetSync("api/Productos");
-        if (httpResponse.IsSuccessStatusCode)
-        {
-            PaginasTotales = int.Parse(httpResponse.Headers.GetValues("totalPaginas").FirstOrDefault());
+        //var httpResponse = await http.GetAsync("api/Productos");
+        //if (httpResponse.IsSuccessStatusCode)
+        //{
+        //    PaginasTotales = int.Parse(httpResponse.Headers.GetValues("totalPaginas").FirstOrDefault());
 
-            var responseString = await httpResponse.Content.ReadAsStringAsync();
-            productos = JsonSerializer.Deserialize<List<ProductoPublicado>>(responseString,
-                new JsonSerializerOptions() {PropertyNameCaseInsensitive = true });
-        }else
-        {
-            Console.WriteLine("error");
-        }
+        //    var responseString = await httpResponse.Content.ReadAsStringAsync();
+        //    productos = JsonSerializer.Deserialize<List<ProductoPublicado>>(responseString,
+        //        new JsonSerializerOptions() {PropertyNameCaseInsensitive = true });
+        //}else
+        //{
+        //    Console.WriteLine("error");
+        //}
 
     }
 
